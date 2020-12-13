@@ -1,0 +1,11 @@
+.hero-container{
+  padding: 10%;
+  background-color: #408dca;
+}
+
+.hero-text{
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  max-width: 50%;
+}
