@@ -1,12 +1,17 @@
+import {useSelector} from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
 import {Link, useHistory} from 'react-router-dom';
 import './header.css';
 
 function Header(){
+  const {token} = useSelector(state=>state.authentication);
   const history = useHistory();
 
+  // if we are on landing page the background is "dark" and the header icons should be white
+  const darkBackground = history.location.pathname === '/' && !token;
+  console.log(darkBackground)
   function handleClick(){
-    history.push('/login');
+    history.push(token?'me':'/login');
   }
 
   return(
@@ -15,7 +20,7 @@ function Header(){
 
       </div>
       <IconWrapper onClick={handleClick}>
-        <UserOutlined style={{fontSize: 24, color:'white'}}/>
+        <UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
       </IconWrapper>
     </div>
   )

@@ -1,29 +1,14 @@
-import TherapistCard from '../therapistCard/TherapistCard';
+import TherapistList from '../therapists/TherapistList';
 
 function Home(){
   return(
-    <div style={{paddingTop:70}}>
+    <div className="App-container">
 
       <h1>Therapists</h1>
-      <div style={{display:'flex', justifyContent:'center', 
-      alignItems:'center', flexFlow:'row wrap'}}>
-        <Therapist style={{margin:10}}/>
-        <Therapist/>
-        <Therapist/>
-        <Therapist/>
-        <Therapist/>
-        <Therapist/>
-      </div>
+      <TherapistList />
     </div>
   )
 }
 
-function Therapist(){
-  return(
-    <div style={{margin:10}}>
-      <TherapistCard/>
-    </div>
-  )
-}
 
-export default Home;
+export default Home

@@ -80,7 +80,7 @@ export const authenticationSlice = createSlice({
       state.loading = true;
     },
     [login.rejected]: (state, action) => {
-      state.loading = true;
+      state.loading = false;
     },
     [getUserData.fulfilled]: (state, action) => {
       state.checkingForToken = false;

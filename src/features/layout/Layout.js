@@ -2,7 +2,7 @@ import Header from '../header/Header';
 
 function Layout({children}){
   return(
-    <div>
+    <div style={{display:'flex', justifyContent:'center'}}>
       <Header/>
       {children}
     </div>

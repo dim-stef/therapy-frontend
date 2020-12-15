@@ -5,7 +5,7 @@ import Hero from '../hero/Hero';
 
 function LandingPage(){
   return(
-    <div>
+    <div style={{width:'100%'}}>
       <Hero/>
     </div>
   )
