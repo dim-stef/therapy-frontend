@@ -48,6 +48,8 @@ export const getUserData = createAsyncThunk(
         userData.token = userToken;
         let results = await axios.get(process.env.REACT_APP_API_URL + '/v1/user/me/');
         userData.user = results.data[0];
+
+        let stripeDataUrl = 'https://api.stripe.com/v1/accounts'; 
       }
     } catch (e) {
       userData.token = null;

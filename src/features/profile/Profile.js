@@ -18,7 +18,7 @@ function TherapistSection(){
   const {user} = useSelector(state=>state.authentication);
 
   return(
-    <div>
+    <div className="profile-row-container">
       <h2 style={{fontWeight:'bold'}}>Payment method</h2>
       <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
         <Typography.Paragraph style={{textAlign:'start'}}>To get paid you need to create a stripe account. 

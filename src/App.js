@@ -14,6 +14,8 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import PurchaseSuccessScreen from './screens/PurchaseSuccessScreen';
+import StripeLinkSuccessScreen from './screens/StripeLinkSuccessScreen';
+import StripeRefreshUrlScreen from './screens/StripeRefreshUrlScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
 import logo from './logo.svg';
 import './App.css';
@@ -39,12 +41,17 @@ function App() {
             <Switch>
               <Route exact path="/">
                 {token?<HomeScreen/>:<LandingPageScreen />}
-                
               </Route>
               <Route path="/me">
                 <ProfileScreen />
               </Route>
-              <Route path={`/success`}>
+              <Route path="/users/oauth/callback">
+                <StripeLinkSuccessScreen />
+              </Route>
+              <Route path="/reauth">
+                <StripeRefreshUrlScreen />
+              </Route>
+              <Route path="/success">
                 <PurchaseSuccessScreen/>
               </Route>
               <Route path="/register">

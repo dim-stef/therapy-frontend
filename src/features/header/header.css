@@ -1,4 +1,5 @@
 .header{
+  padding: 0 100px;
   position: fixed;
   top:0;
   box-shadow:
@@ -12,4 +13,10 @@
   height: 60px;
   display: flex;
   flex-flow: row;
+}
+
+@media all and (max-width: 768px){
+  .header{
+    padding: 0 10px;
+  }
 }

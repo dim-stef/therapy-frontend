@@ -4,3 +4,9 @@
   flex-flow: column;
   align-items: end;
 }
+
+.profile-row-container{
+  display: flex;
+  flex-flow: column;
+  align-items: self-end;
+}

@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeOutlined } from '@ant-design/icons';
 import {Link, useHistory} from 'react-router-dom';
 import './header.css';
 
@@ -9,17 +9,23 @@ function Header(){
 
   // if we are on landing page the background is "dark" and the header icons should be white
   const darkBackground = history.location.pathname === '/' && !token;
-  console.log(darkBackground)
-  function handleClick(){
+
+  function handleProfileClick(){
     history.push(token?'me':'/login');
+  }
+
+  function handleHomeClick(){
+    history.push('/');
   }
 
   return(
     <div className="header">
-      <div style={{flex:1}}>
-
+      <div style={{flex:1, display:'flex'}}>
+        <IconWrapper onClick={handleHomeClick}>
+          <HomeOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
+        </IconWrapper>
       </div>
-      <IconWrapper onClick={handleClick}>
+      <IconWrapper onClick={handleProfileClick}>
         <UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
       </IconWrapper>
     </div>
