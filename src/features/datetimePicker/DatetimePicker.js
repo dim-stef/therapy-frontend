@@ -41,7 +41,7 @@ function disabledRangeTime(_, type) {
 }
 
 
-function DatetimePicker({therapist}){
+function DatetimePicker({therapist, onOk}){
   const {sessions} = therapist;
   const [disabledHours, setDisabledHours] = useState([]);
 
@@ -85,6 +85,7 @@ function DatetimePicker({therapist}){
       <DatePicker
         onChange={handleChange}
         onSelect={handleSelect}
+        onOk={onOk}
         placeholder="Buy a session"
         format="YYYY-MM-DD HH:mm"
         disabledTime={()=>disabledDateTime(disabledHours)}

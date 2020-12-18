@@ -9,6 +9,7 @@ import Layout from './features/layout/Layout';
 import {useSelector, useDispatch} from 'react-redux';
 import LandingPageScreen from './screens/LandingPageScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import RegisterTherapistScreen from './screens/RegisterTherapistScreen';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -16,6 +17,7 @@ import LoadingScreen from './screens/LoadingScreen';
 import PurchaseSuccessScreen from './screens/PurchaseSuccessScreen';
 import StripeLinkSuccessScreen from './screens/StripeLinkSuccessScreen';
 import StripeRefreshUrlScreen from './screens/StripeRefreshUrlScreen';
+import CheckoutScreen from './screens/CheckoutScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
 import logo from './logo.svg';
 import './App.css';
@@ -56,6 +58,9 @@ function App() {
               </Route>
               <Route path="/register">
                 <RegisterScreen />
+              </Route>
+              <Route path="/register-therapist">
+                <RegisterTherapistScreen />
               </Route>
               <Route path="/login">
                 <LoginScreen />

@@ -1,4 +1,3 @@
-import {useHistory} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
@@ -10,15 +9,14 @@ import './register.css';
 function register(){
 
 }
-const Register = () => {
-  const history = useHistory();
+const RegisterTherapist = () => {
   const dispatch = useDispatch();
   const onFinish = (values) => {
     console.log('Success:', values);
     dispatch(
       register({
         email: values.email,
-        password: values.password,
+        password1: values.password1,
       }),
     )
       .then(unwrapResult)
@@ -33,10 +31,6 @@ const Register = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-
-  const handleCreateTherapistAccount = ()=>{
-    history.push('/register-therapist');
-  }
 
   return (
     <div style={{paddingTop:70, width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -67,7 +61,7 @@ const Register = () => {
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
+            type="password1"
             placeholder="Password"
           />
         </Form.Item>
@@ -96,16 +90,13 @@ const Register = () => {
             placeholder="Password again"
           />
         </Form.Item>
-        <Form.Item>
-          <span>or</span>
+        <Form.Item name="bio">
+          <Input.TextArea
+            /*onChange={onChange}*/
+            placeholder="Add a short bio"
+            autoSize={{ minRows: 3, maxRows: 5 }}
+          />
         </Form.Item>
-        <Form.Item>
-          
-          <Button type="default" onClick={handleCreateTherapistAccount}>
-            Create a therapist account
-          </Button>
-        </Form.Item>
-        
         <Form.Item style={{display:'flex', flexFlow:'column'}}>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Register
@@ -124,4 +115,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterTherapist;
