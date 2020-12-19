@@ -1,3 +1,4 @@
+import {useHistory} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
@@ -7,7 +8,14 @@ import {login} from '../authentication/authenticationSlice';
 import './login.css';
 
 const Login = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const {token} = useSelector(state=>state.authentication);
+
+  if(token){
+    history.push('/');
+  }
+
   const onFinish = (values) => {
     console.log('Success:', values);
     dispatch(
@@ -36,7 +44,6 @@ const Login = () => {
         name="normal_login"
         className="login-form"
         initialValues={{ remember: true }}
-        style={{}}
         onFinish={onFinish}
       >
         <h1 style={{fontWeight:'bold'}}>Login</h1>

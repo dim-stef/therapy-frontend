@@ -1,30 +1,43 @@
+import {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {unwrapResult} from '@reduxjs/toolkit';
-//import {register} from '../authentication/authenticationSlice';
+import {register} from '../authentication/authenticationSlice';
 import './register.css';
 
-function register(){
-
-}
 const RegisterTherapist = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const {token} = useSelector(state=>state.authentication);
+
+  if(token){
+    history.push('/');
+  }
+
+  const [result, setResult] = useState(null);
+
   const onFinish = (values) => {
     console.log('Success:', values);
     dispatch(
       register({
+        name: values.name,
         email: values.email,
+        bio: values.bio,
+        is_therapist:true,
         password1: values.password1,
+        password2: values.password2
       }),
     )
       .then(unwrapResult)
-      .then((result) => {
-        if (result.non_field_errors) {
+      .then((res) => {
+        setResult(res.data);
+        if (res.data.non_field_errors) {
           //setErrors(result.non_field_errors);
         }
-        console.log('Rer', result);
+        console.log('Rer', res);
       });
   };
 
@@ -53,7 +66,7 @@ const RegisterTherapist = () => {
           name="email"
           rules={[{ required: true, message: 'Please enter your email' }]}
         >
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+          <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
         </Form.Item>
         <Form.Item
           name="password1"
@@ -61,7 +74,7 @@ const RegisterTherapist = () => {
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password1"
+            type="password"
             placeholder="Password"
           />
         </Form.Item>
@@ -97,6 +110,14 @@ const RegisterTherapist = () => {
             autoSize={{ minRows: 3, maxRows: 5 }}
           />
         </Form.Item>
+        <div>
+          {result?.password1?result.password1.map(r=>{
+            return <div className="ant-form-item-explain ant-form-item-explain-error">{r}</div>
+          }):null}
+          {result?.email?result.email.map(r=>{
+            return <div className="ant-form-item-explain ant-form-item-explain-error">{r}</div>
+          }):null}
+        </div>
         <Form.Item style={{display:'flex', flexFlow:'column'}}>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Register

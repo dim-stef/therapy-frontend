@@ -1,32 +1,40 @@
+import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {unwrapResult} from '@reduxjs/toolkit';
-//import {register} from '../authentication/authenticationSlice';
+import {register} from '../authentication/authenticationSlice';
 import './register.css';
 
-function register(){
-
-}
-const Register = () => {
+function Register(){
   const history = useHistory();
   const dispatch = useDispatch();
+  const {token} = useSelector(state=>state.authentication);
+
+  // redirect to home if user is already logged in
+  if(token){
+    history.push('/');
+  }
+
+  const [result, setResult] = useState(null);
   const onFinish = (values) => {
-    console.log('Success:', values);
     dispatch(
       register({
+        name: values.name,
         email: values.email,
-        password: values.password,
+        is_therapist:false,
+        password1: values.password1,
+        password2: values.password2
       }),
     )
       .then(unwrapResult)
-      .then((result) => {
-        if (result.non_field_errors) {
+      .then((res) => {
+        setResult(res.data);
+        if (res.data.non_field_errors) {
           //setErrors(result.non_field_errors);
         }
-        console.log('Rer', result);
       });
   };
 
@@ -59,7 +67,7 @@ const Register = () => {
           name="email"
           rules={[{ required: true, message: 'Please enter your email' }]}
         >
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+          <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
         </Form.Item>
         <Form.Item
           name="password1"
@@ -88,7 +96,6 @@ const Register = () => {
               },
             }),
           ]}
-
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
@@ -96,6 +103,14 @@ const Register = () => {
             placeholder="Password again"
           />
         </Form.Item>
+        <div>
+          {result?.password1?result.password1.map(r=>{
+            return <div className="ant-form-item-explain ant-form-item-explain-error">{r}</div>
+          }):null}
+          {result?.email?result.email.map(r=>{
+            return <div className="ant-form-item-explain ant-form-item-explain-error">{r}</div>
+          }):null}
+        </div>
         <Form.Item>
           <span>or</span>
         </Form.Item>

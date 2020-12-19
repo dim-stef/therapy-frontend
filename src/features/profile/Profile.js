@@ -14,6 +14,10 @@ function Profile(){
       <div className="profile-container">
         <h1>Hi, {user.profile.name}</h1>
         {user.therapist?<TherapistSection/>:null}
+        <h2 style={{fontWeight:'bold'}}>Your profile</h2>
+        <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
+          <UpdateProfileSection/>
+        </div>
       </div>
     </div>
   )
@@ -54,10 +58,7 @@ function TherapistSection(){
 
   return(
     <div className="profile-row-container">
-      <h2 style={{fontWeight:'bold'}}>Your profile</h2>
-      <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
-        <UpdateProfileSection/>
-      </div>
+      
       <h2 style={{fontWeight:'bold'}}>Payment method</h2>
       <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
         <Typography.Paragraph style={{textAlign:'start'}}>{chargesEnabled?'Go to your dashboard to check your balance.':
@@ -65,7 +66,6 @@ function TherapistSection(){
         <Button type="primary" loading={loading} onClick={chargesEnabled?handleLoginClick:handleSetupStripeClick}>
         {chargesEnabled?'View your dashboard':'Setup payment method'}</Button>
       </div>
-      
     </div>
   )
 }
