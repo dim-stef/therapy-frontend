@@ -1,35 +1,35 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getTherapists = createAsyncThunk(
-  'therapists/getTherapists',
-  async ()=>{
-    const url = process.env.REACT_APP_API_URL + '/v1/therapists/';
+export const getMySessions = createAsyncThunk(
+  'sessions/getMySessions',
+  async () =>{
+    const url = `${process.env.REACT_APP_API_URL}/v1/my_sessions/`
     try{
       let response = await axios.get(url);
       return response.data;
     }catch(e){
-
+      console.error(e);
     }
   }
 )
 
-export const therapistsSlice = createSlice({
-  name:'therapists',
+export const sessionSlice = createSlice({
+  name:'sessions',
   initialState: {
-    therapists:[],
+    mySessions: [],
     loading:false,
   },
   extraReducers: {
-    [getTherapists.fulfilled]: (state, action)=>{
-      state.therapists = action.payload;
+    [getMySessions.fulfilled]: (state, action)=>{
+      state.mySessions = action.payload;
       state.loading = false;
     },
-    [getTherapists.pending]: (state, action)=>{
+    [getMySessions.pending]: (state, action)=>{
       state.loading = true;
     },
-    [getTherapists.rejected]: (state,action) =>{
+    [getMySessions.rejected]: (state,action) =>{
       state.loading = false;
-    }
+    },
   }
 })

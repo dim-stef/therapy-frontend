@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Checkbox, Select } from 'antd';
+import { UserOutlined, MailOutlined, LockOutlined, PhoneOutlined, HomeOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {unwrapResult} from '@reduxjs/toolkit';
@@ -26,6 +26,10 @@ const RegisterTherapist = () => {
         name: values.name,
         email: values.email,
         bio: values.bio,
+        office_number: values.office_number,
+        phone_number:values.phone_number,
+        address: values.address,
+        specialisation: values.specialisation,
         is_therapist:true,
         password1: values.password1,
         password2: values.password2
@@ -103,12 +107,52 @@ const RegisterTherapist = () => {
             placeholder="Password again"
           />
         </Form.Item>
+        <Form.Item
+          name="phone_number"
+          rules={[{ required: true, message: 'Please enter your phone number' }]}
+        >
+          <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="Phone number" />
+        </Form.Item>
+        <Form.Item
+          name="office_number"
+          rules={[{ required: true, message: 'Please enter your office number' }]}
+        >
+          <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="Office number" />
+        </Form.Item>
+        <Form.Item
+          name="address"
+          rules={[{ required: true, message: 'Please enter your office address' }]}
+        >
+          <Input prefix={<HomeOutlined className="site-form-item-icon" />} placeholder="Address" />
+        </Form.Item>
+        <Form.Item name="specialisation"
+        rules={[{ required: true, message: 'Please enter your specialisation' }]}
+        >
+          <Select placeholder="Select specialisation">
+            <Select.Option value="kids">Kids</Select.Option>
+          </Select>
+        </Form.Item>
         <Form.Item name="bio">
           <Input.TextArea
             /*onChange={onChange}*/
             placeholder="Add a short bio"
             autoSize={{ minRows: 3, maxRows: 5 }}
           />
+        </Form.Item>
+        <Form.Item
+          name="agreement"
+          valuePropName="checked"
+          rules={[
+            {
+              validator: (_, value) =>
+                value ? Promise.resolve() : 
+                Promise.reject('You have to accepts the terms and conditions in order to create an account'),
+            },
+          ]}
+        >
+          <Checkbox>
+            I have read the <a href="">terms and conditions</a>
+          </Checkbox>
         </Form.Item>
         <div>
           {result?.password1?result.password1.map(r=>{

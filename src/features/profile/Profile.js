@@ -1,32 +1,48 @@
 import {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import { Button, Typography, Divider } from 'antd';
+import { Button, Typography, Divider, Tabs } from 'antd';
 import {useSelector} from 'react-redux';
 import UpdateProfileSection from './UpdateProfileSection';
+import AvailabilitySection from './AvailabilitySection';
 import axios from 'axios';
 import './profile.css';
+
 
 function Profile(){
   const {user} = useSelector(state=>state.authentication);
 
+  function callback(key) {
+    //console.log(key);
+  }
+
   return(
     <div className="App-container">
       <div className="profile-container">
-        <h1>Hi, {user.profile.name}</h1>
-        {user.therapist?<TherapistSection/>:null}
-        <h2 style={{fontWeight:'bold'}}>Your profile</h2>
-        <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
-          <UpdateProfileSection/>
+        <div>
+          <h1>Hi, {user.profile.name}</h1>
+          {user.therapist?<TherapistSection/>:null}
         </div>
+        
+        <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start',marginTop:20}}>
+          <h2 style={{fontWeight:'bold'}}>Your availability</h2>
+          <Typography.Paragraph style={{textAlign:'start'}}>Select the hours you can accept sessions for each day.</Typography.Paragraph>
+
+          <AvailabilitySection therapist={user.therapist}/>
+        </div>
+
+        <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start',marginTop:20}}>
+          <h2 style={{fontWeight:'bold'}}>Your profile</h2>
+          <UpdateProfileSection/>
+        </div>   
       </div>
     </div>
   )
 }
 
 function TherapistSection(){
+  const {user} = useSelector(state=>state.authentication);
   const [loading, setLoading] = useState(false);
   const [loginUrl, setLoginUrl] = useState(null);
-  const {user} = useSelector(state=>state.authentication);
   const [chargesEnabled, setChargesEnables] = useState(user.profile.charges_enabled);
 
   async function getStripeLoginLink(){

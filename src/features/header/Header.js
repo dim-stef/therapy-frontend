@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux';
-import { UserOutlined, HomeOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeOutlined, CalendarOutlined } from '@ant-design/icons';
 import {Link, useHistory} from 'react-router-dom';
 import './header.css';
 
@@ -11,11 +11,15 @@ function Header(){
   const darkBackground = history.location.pathname === '/' && !token;
 
   function handleProfileClick(){
-    history.push(token?'me':'/login');
+    history.push(token?'/me':'/login');
   }
 
   function handleHomeClick(){
     history.push('/');
+  }
+
+  function handleSessionClick(){
+    history.push('/my_sessions');
   }
 
   return(
@@ -25,6 +29,9 @@ function Header(){
           <HomeOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
         </IconWrapper>
       </div>
+      <IconWrapper onClick={handleSessionClick}>
+        <CalendarOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
+      </IconWrapper>
       <IconWrapper onClick={handleProfileClick}>
         <UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
       </IconWrapper>
