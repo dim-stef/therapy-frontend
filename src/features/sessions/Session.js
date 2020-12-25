@@ -10,7 +10,7 @@ function Session({session}){
 
   return(
     <div>
-      {user.therapist?.id==session.therapist?
+      {user.therapist?.id==session.therapist.id?
       <EvaluateSession session={session}/>:<ProceedToPayment session={session}/>}
     </div>
   )

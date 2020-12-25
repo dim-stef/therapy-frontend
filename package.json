@@ -22,6 +22,7 @@
     "react-scripts": "4.0.1",
     "react-toastify": "^6.2.0",
     "tailwindcss": "^2.0.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
   "proxy": "http://localhost:8000",

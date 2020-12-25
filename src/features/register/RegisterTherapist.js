@@ -151,7 +151,7 @@ const RegisterTherapist = () => {
           ]}
         >
           <Checkbox>
-            I have read the <a href="">terms and conditions</a>
+            I have read the <a href="#">terms and conditions</a>
           </Checkbox>
         </Form.Item>
         <div>

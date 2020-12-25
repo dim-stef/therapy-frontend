@@ -1,0 +1,7 @@
+.pointBoxList{
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: -40px;
+}

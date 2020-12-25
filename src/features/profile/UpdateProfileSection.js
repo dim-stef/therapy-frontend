@@ -8,16 +8,17 @@ const UpdateProfileSection = () => {
   const {user} = useSelector(state=>state.authentication);
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('vertical');
+
+  // initial values for the form
   const [name, setName] = useState(user.profile.name);
-  const [avatar, setAvatar] = useState(user.profile.avatar);
+  const [avatar, setAvatar] = useState(null);
 
   useEffect(()=>{
     setName(user.profile.name);
-    setAvatar(user.profile.avatar)
-  },[user.profile.name, user.profile.avatar])
-  
+  },[user.profile.name])
+
   const normFile = (e) => {
-    console.log('Upload event:', e);
+    console.log('Upload event:', e, e.fileList,e && e.fileList);
   
     if (Array.isArray(e)) {
       return e;
@@ -28,14 +29,17 @@ const UpdateProfileSection = () => {
 
   async function onFinish(values){
     console.log(values);
-    const newAvatar = values.avatar?values.avatar[0]:null;
+    const newAvatar = values.avatar?values.avatar:null;
     const newName = values.name;
 
     let formData = new FormData();
     formData.append('name', newName);
-    formData.append('avatar', newAvatar);
+    if(newAvatar){
+      formData.append('avatar', newAvatar.file);
+    }
+    
     try{
-      let url = `${process.env.REACT_APP_API_URL}/v1/user_profiles/${user.profile.id}/`
+      let url = `${process.env.REACT_APP_API_URL}/v1/update_user_profile/${user.profile.id}/`
       let response = await axios.patch(url, formData);
       console.log(response);
     }catch(e){
@@ -43,6 +47,15 @@ const UpdateProfileSection = () => {
     }
   }
 
+  function handleRemove(){
+
+    setAvatar(null);
+  }
+
+  function beforeUpload(_file){
+    setAvatar(_file);
+    return false;
+  }
   const formItemLayout =
     formLayout === 'horizontal'
       ? {
@@ -69,8 +82,9 @@ const UpdateProfileSection = () => {
         initialValues={{ layout: formLayout }}
       >
         <Form.Item label="Profile picture">
-          <Form.Item name="avatar" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-            <Upload.Dragger multiple={false} listType="picture" name="avatar" beforeUpload={() => false}>
+          <Form.Item name="avatar" noStyle>
+            <Upload.Dragger handleRemove={handleRemove}
+            listType="picture" name="avatar" beforeUpload={beforeUpload} fileList={avatar?[avatar]:null}>
               <p className="ant-upload-drag-icon">
                 {user.profile.avatar?<Avatar src={`${process.env.REACT_APP_DOMAIN}${user.profile.avatar}`} size={50}/>:<UserOutlined />}
               </p>
@@ -79,7 +93,8 @@ const UpdateProfileSection = () => {
             </Upload.Dragger>
           </Form.Item>
         </Form.Item>
-        <Form.Item name="name" rules={[{ required: true, message: 'This field cannot be empty' }]} label="Name">
+        <Form.Item name="name" initialValue={name} rules={[{ required: true, message: 'This field cannot be empty' }]} 
+          label="Name">
           <Input placeholder="Your name" value={name} onChange={e=>setName(e.target.value)}/>
         </Form.Item>
         <Form.Item {...buttonItemLayout}>

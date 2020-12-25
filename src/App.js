@@ -20,6 +20,7 @@ import StripeRefreshUrlScreen from './screens/StripeRefreshUrlScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
 import SessionApprovalScreen from './screens/SessionApprovalScreen';
 import MySessionsScreen from './screens/MySessionsScreen';
+import GetVerifiedScreen from './screens/GetVerifiedScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
 import logo from './logo.svg';
 import './App.css';
@@ -69,6 +70,9 @@ function App() {
               </Route>
               <Route path="/register-therapist">
                 <RegisterTherapistScreen />
+              </Route>
+              <Route path="/verification/:id">
+                <GetVerifiedScreen/>
               </Route>
               <Route path="/login">
                 <LoginScreen />
