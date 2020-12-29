@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Upload, Avatar } from 'antd';
 import { UploadOutlined, UserOutlined, InboxOutlined } from '@ant-design/icons';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {getUserData} from '../authentication/authenticationSlice';
 import axios from 'axios';
 
 const UpdateProfileSection = () => {
+  const dispatch = useDispatch();
   const {user} = useSelector(state=>state.authentication);
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('vertical');
@@ -44,6 +46,7 @@ const UpdateProfileSection = () => {
       setLoading(true);
       let response = await axios.patch(url, formData);
       setLoading(false);
+      dispatch(getUserData());
       console.log(response);
     }catch(e){
       setLoading(false);

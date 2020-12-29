@@ -59,7 +59,7 @@ const RegisterTherapist = () => {
         style={{}}
         onFinish={onFinish}
       >
-        <h1 style={{fontWeight:'bold'}}>Register</h1>
+        <h1 style={{fontWeight:'bold'}}>Create a therapist account</h1>
         <Form.Item
           name="name"
           rules={[{ required: true, message: 'Please enter your name' }]}

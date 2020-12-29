@@ -48,11 +48,9 @@ function Header(){
   return(
     <div className={`header ${darkBackground?'header-dark':'header-light'}`}>
       <div style={{flex:1, display:'flex'}}>
-        {token?
-          <IconWrapper onClick={handleHomeClick}>
-            <HomeOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
-          </IconWrapper>
-        :null}
+      <IconWrapper onClick={handleHomeClick}>
+        <HomeOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
+      </IconWrapper>
         
       </div>
       {token?
