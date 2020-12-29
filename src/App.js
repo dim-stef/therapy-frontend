@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 import Layout from './features/layout/Layout';
 import {useSelector, useDispatch} from 'react-redux';
 import LandingPageScreen from './screens/LandingPageScreen';
@@ -17,11 +18,12 @@ import LoadingScreen from './screens/LoadingScreen';
 import PurchaseSuccessScreen from './screens/PurchaseSuccessScreen';
 import StripeLinkSuccessScreen from './screens/StripeLinkSuccessScreen';
 import StripeRefreshUrlScreen from './screens/StripeRefreshUrlScreen';
-import CheckoutScreen from './screens/CheckoutScreen';
 import SessionApprovalScreen from './screens/SessionApprovalScreen';
 import MySessionsScreen from './screens/MySessionsScreen';
 import GetVerifiedScreen from './screens/GetVerifiedScreen';
+import UploadSuccessScreen from './screens/UploadSuccessScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
+import 'react-toastify/dist/ReactToastify.css';
 import logo from './logo.svg';
 import './App.css';
 
@@ -30,6 +32,7 @@ function App() {
   const {user, token, checkingForToken} = useSelector(state=>state.authentication);
 
   useEffect(()=>{
+    console.log("tokken", token)
     dispatch(getUserData())
   },[token, dispatch])
   
@@ -41,6 +44,7 @@ function App() {
   }
   return (
     <div className="App">
+      <ToastContainer />
       <Router>
         <Layout>
             <Switch>
@@ -68,11 +72,14 @@ function App() {
               <Route path="/register">
                 <RegisterScreen />
               </Route>
-              <Route path="/register-therapist">
+              <Route path="/register_therapist">
                 <RegisterTherapistScreen />
               </Route>
               <Route path="/verification/:id">
                 <GetVerifiedScreen/>
+              </Route>
+              <Route path="/upload_success">
+                <UploadSuccessScreen/>
               </Route>
               <Route path="/login">
                 <LoginScreen />

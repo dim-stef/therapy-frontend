@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -10,6 +11,7 @@ import './login.css';
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [error, setError] = useState(false);
   const {token} = useSelector(state=>state.authentication);
 
   if(token){
@@ -26,6 +28,9 @@ const Login = () => {
     )
       .then(unwrapResult)
       .then((result) => {
+        if(result.status==401){
+          setError(true);
+        }
         if (result.non_field_errors) {
           //setErrors(result.non_field_errors);
         }
@@ -63,6 +68,8 @@ const Login = () => {
             placeholder="Password"
           />
         </Form.Item>
+        {error?<div className="ant-form-item-explain ant-form-item-explain-error">
+        Your email or password did not match</div>:null}
         <Form.Item>
           <a className="login-form-forgot" href="">
             Forgot password

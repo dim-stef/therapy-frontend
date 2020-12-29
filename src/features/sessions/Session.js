@@ -54,7 +54,7 @@ function EvaluateSession({session}){
           <Button type="primary" onClick={handleAcceptClick}>Accept</Button>
           <Button onClick={handleDeclineClick}>Decline</Button>
           </>
-        :null}
+        :session.status=='PC'?<Button disabled>Payment completed</Button>:null}
         
       </Space>
     </div>
@@ -79,14 +79,25 @@ function ProceedToPayment({session}){
     }
   }
 
+  let feedbackText = '';
+  if(session.status=='AC'){
+    feedbackText = 'has been accepted.';
+  }else if(session.status=='RJ'){
+    feedbackText = 'has been rejected.';
+  }else if(session.status=='PD'){
+    feedbackText = 'is pending.';
+  }else if(session.status=='PC'){
+    feedbackText = 'has been completed. Your therapist will contact you with details on your email.';
+  }
 
   return(
     <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
-      <p style={{margin:0, marginTop:20, textAlign:'start'}}>Your session on
-      <b> {moment(new Date(session.start_date)).format("dddd, MMMM Do YYYY, h:mm:ss a")}</b> has been accepted</p>
+      <p style={{margin:0, marginTop:20, maxWidth:600, textAlign:'start'}}>Your session on
+      <b> {moment(new Date(session.start_date)).format("dddd, MMMM Do YYYY, h:mm:ss a")}</b> {feedbackText}</p>
       {session.status=='AC'?<Button type="primary" onClick={handlePayment}>Proceed to payment</Button>:null}
       {session.status=='RJ'?<Button disabled>Your request was declined</Button>:null}
       {session.status=='PD'?<Button disabled>Waiting for therapists response</Button>:null}
+      {session.status=='PC'?<Button disabled>Payment completed</Button>:null}
     </div>
   )
 }

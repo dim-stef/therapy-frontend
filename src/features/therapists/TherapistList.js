@@ -1,11 +1,13 @@
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { LoadingOutlined } from '@ant-design/icons';
 import {getTherapists} from './therapistsSlice';
 import TherapistCard from '../therapistCard/TherapistCard';
 
+
 function TherapistList(){
   const dispatch = useDispatch();
-  const {therapists} = useSelector(state=>state.therapists);
+  const {therapists, loading} = useSelector(state=>state.therapists);
 
   useEffect(()=>{
     dispatch(getTherapists());
@@ -13,7 +15,9 @@ function TherapistList(){
 
   return(
     <div style={{display:'flex', justifyContent:'center', flexFlow:'row wrap'}}>
-      {therapists.map(therapist=>{
+      {loading?
+      <LoadingOutlined style={{ fontSize: 24 }} spin />:
+      therapists.map(therapist=>{
         return <Therapist therapist={therapist}/>
       })}
     </div>

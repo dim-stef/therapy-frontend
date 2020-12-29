@@ -43,7 +43,7 @@ function Register(){
   };
 
   const handleCreateTherapistAccount = ()=>{
-    history.push('/register-therapist');
+    history.push('/register_therapist');
   }
 
   return (

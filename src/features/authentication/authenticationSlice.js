@@ -16,7 +16,12 @@ async function getTokens(credentials){
       }),
     });
     let data = await response.json();
-    return data;
+    let payload = {
+      access: data?.access,
+      refresh: data?.refresh,
+      status: response.status,
+    }
+    return payload;
   } catch (e) {}
 }
 
@@ -24,8 +29,10 @@ export const login = createAsyncThunk(
   'authentication/login',
   async (credentials) => {
     let data = await getTokens(credentials);
-    localStorage.setItem('token', data.access)
-    localStorage.setItem('refresh', data.refresh)
+    if(data.access && data.refresh){
+      localStorage.setItem('token', data.access)
+      localStorage.setItem('refresh', data.refresh)
+    }
     return data;
   },
 );
@@ -75,6 +82,7 @@ export const getUserData = createAsyncThunk(
 
     try {
       userToken = localStorage.getItem('token');
+      console.log(userToken);
       console.log(userToken, localStorage);
       userData.token = userToken;
       axios.defaults.withCredentials = true;
@@ -113,7 +121,7 @@ export const authenticationSlice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      state.token = action.payload.access;
+      //state.token = action.payload.access;
       state.loading = false;
 
       if (action.payload.access) {
@@ -129,18 +137,15 @@ export const authenticationSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload,'payload');
       if(action.payload.access){
         state.token = action.payload.access
         state.refresh = action.payload.refresh;
       }
     },
     [register.pending]: (state, action) => {
-      console.log(action.payload,'payload');
       state.loading = true;
     },
     [register.rejected]: (state, action) => {
-      console.log(action.payload,'payload');
       state.loading = false;
     },
     [getUserData.fulfilled]: (state, action) => {

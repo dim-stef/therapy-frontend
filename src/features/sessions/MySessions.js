@@ -1,7 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
-import { Space } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import Session from './Session';
 import {getMySessions} from './sessionSlice';
@@ -9,9 +8,7 @@ import axios from 'axios';
 
 function MySessions(){
   const dispatch = useDispatch();
-  const {mySessions} = useSelector(state=>state.sessions);
-
-  console.log(mySessions);
+  const {mySessions, loading} = useSelector(state=>state.sessions);
 
   useEffect(()=>{
     dispatch(getMySessions());
@@ -20,7 +17,9 @@ function MySessions(){
   return(
     <div className="App-container">
       <div style={{margin:'0 10px'}}>
-        {mySessions.map(session=>{
+        <h1 style={{textAlign:'start'}}>My sessions</h1>
+        {loading?<LoadingOutlined style={{ fontSize: 24 }} spin />:
+        mySessions.map(session=>{
           return(
             <React.Fragment key={session.surrogate}>     
               <Session session={session}/>

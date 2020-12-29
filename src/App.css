@@ -23,8 +23,17 @@
   width: 250px;
 }
 
+h1{
+  font-weight: 700;
+}
 *{
   font-family: 'Nunito Sans', sans-serif;
+}
+
+@media all and (max-width: 767px){
+  .ant-form{
+    width: auto;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

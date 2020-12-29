@@ -8,6 +8,7 @@ const UpdateProfileSection = () => {
   const {user} = useSelector(state=>state.authentication);
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('vertical');
+  const [loading, setLoading] = useState(false);
 
   // initial values for the form
   const [name, setName] = useState(user.profile.name);
@@ -40,9 +41,12 @@ const UpdateProfileSection = () => {
     
     try{
       let url = `${process.env.REACT_APP_API_URL}/v1/update_user_profile/${user.profile.id}/`
+      setLoading(true);
       let response = await axios.patch(url, formData);
+      setLoading(false);
       console.log(response);
     }catch(e){
+      setLoading(false);
       console.error(e);
     }
   }
@@ -98,7 +102,7 @@ const UpdateProfileSection = () => {
           <Input placeholder="Your name" value={name} onChange={e=>setName(e.target.value)}/>
         </Form.Item>
         <Form.Item {...buttonItemLayout}>
-          <Button type="primary" htmlType="submit">Save</Button>
+          <Button type="primary" loading={loading} htmlType="submit">Save</Button>
         </Form.Item>
       </Form>
     </>

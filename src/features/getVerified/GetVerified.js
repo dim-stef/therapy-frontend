@@ -1,13 +1,18 @@
 import {useState} from 'react';
 import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import {Link, useHistory} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 
 function GetVerified(){
+  const history = useHistory();
   let { id } = useParams();
   const {user} = useSelector(state=>state.authentication);
+  if(!user.profile.is_therapist){
+    history.push('/');
+  }
   const [uploading, setUploading] = useState(false);
   const [file, setFile] = useState(null);
 
@@ -20,6 +25,9 @@ function GetVerified(){
       let response = await axios.patch(url, formData);
       console.log(response)
       setUploading(false);
+      if(response.status==200){
+        history.push('/upload_success');
+      }
     }catch(e){
       setUploading(false);
       console.error(e);

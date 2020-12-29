@@ -17,18 +17,18 @@ function Profile(){
 
   return(
     <div className="App-container">
-      <div className="profile-container">
+      <div className="profile-container" style={{display:'block'}}>
         <div>
-          <h1>Hi, {user.profile.name}</h1>
+          <h1 style={{textAlign:'start'}}>Hi, {user.profile.name}</h1>
           {user.therapist?<TherapistSection/>:null}
         </div>
         
+        {user.therapist?
         <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start',marginTop:20}}>
           <h2 style={{fontWeight:'bold'}}>Your availability</h2>
           <Typography.Paragraph style={{textAlign:'start'}}>Select the hours you can accept sessions for each day.</Typography.Paragraph>
-
           <AvailabilitySection therapist={user.therapist}/>
-        </div>
+        </div>:null}
 
         <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start',marginTop:20}}>
           <h2 style={{fontWeight:'bold'}}>Your profile</h2>
@@ -62,7 +62,6 @@ function TherapistSection(){
   }
 
   function handleSetupStripeClick(){
-    console.log("sadasdadsasd")
     window.location.href = user.profile.stripe_account_link;
   }
 

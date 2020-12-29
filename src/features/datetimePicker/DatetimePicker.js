@@ -1,9 +1,38 @@
 import {useState} from 'react';
-import moment from 'moment';
+import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import { DatePicker, Space } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import {getMySessions} from '../sessions/sessionSlice';
 import axios from 'axios';
+import moment from 'moment';
 
 const { RangePicker } = DatePicker;
+
+
+const days = [
+  {
+    value:'1', label:'Monday'
+  },
+  {
+    value:'2', label:'Tuesday'
+  },
+  {
+    value:'3', label:'Wednesday'
+  },
+  {
+    value:'4', label:'Thursday'
+  },
+  {
+    value:'5', label:'Friday'
+  },
+  {
+    value:'6', label:'Saturday'
+  }, 
+  {
+    value:'7', label:'Sunday'
+  },
+]
 
 function range(start, end) {
   const result = [];
@@ -13,40 +42,58 @@ function range(start, end) {
   return result;
 }
 
-function disabledDate(current) {
-  // Can not select days before today and today
-  return current && current < moment().endOf('day');
+function getDisabledHoursFromAvailability(times){
+  // times are the therapists available hours
+  // we want to return the rest of the hours that the therapist is not available
+  // in order to disable them in antdesigns datepicker
+  const hours = range(0, 24)
+  const result = [];
+  hours.forEach(hour=>{
+    if(!times.includes(hour)){
+      result.push(hour);
+    }
+  })
+  return result;
 }
 
 function disabledDateTime(hours) {
   return {
     disabledHours: () => hours,//range(0, 24).splice(4, 20),
-    disabledMinutes: () => range(30, 60),
+    //disabledMinutes: () => range(30, 60),
   };
 }
-
-function disabledRangeTime(_, type) {
-  if (type === 'start') {
-    return {
-      disabledHours: () => range(0, 60).splice(4, 20),
-      disabledMinutes: () => range(30, 60),
-      disabledSeconds: () => [55, 56],
-    };
-  }
-  return {
-    disabledHours: () => range(0, 60).splice(20, 4),
-    disabledMinutes: () => range(0, 31),
-    disabledSeconds: () => [55, 56],
-  };
-}
-
 
 function DatetimePicker({therapist, onOk}){
   const {sessions} = therapist;
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [disabledHours, setDisabledHours] = useState([]);
+
+  const notify = () => {
+    toast("Your session has been requested, click here to view its status.", {
+      onClick:()=>{
+        history.push('/my_sessions');
+      }
+    });
+  }
 
   // find which hours the therapists has appointments and disable them
   function handleSelect(date){
+    
+    // here we get the standard hours that the therapist has set
+    // he is not available
+    let _day = date.day();
+    let foundDay = days.find(d=>d.value==_day)
+    let available_times = therapist.availability_times.filter(availability=>availability.weekday==foundDay.value).map(availability=>{
+      let startTime = parseInt(availability.start_time.substring(0, 2));
+      let endTime = parseInt(availability.end_time.substring(0, 2)) + 1; // plus 1 to include the last hour
+      return range(startTime, endTime);
+    })
+    available_times = available_times.flat()
+    let standardDisabledHours = getDisabledHoursFromAvailability(available_times);
+    
+    // here we get the dynamic disabled hours that are occupied
+    // by existing sessions
     let disabled = [];
     let day = date.date();
     sessions.forEach(session=>{
@@ -57,7 +104,9 @@ function DatetimePicker({therapist, onOk}){
         //disabled.push(endDate.hour());
       }
     })
-    setDisabledHours(disabled);
+
+    // at the end we concat the two arrays together
+    setDisabledHours(disabled.concat(standardDisabledHours));
   }
 
   async function handleCreateSession(dateString){
@@ -68,13 +117,16 @@ function DatetimePicker({therapist, onOk}){
       const url = process.env.REACT_APP_API_URL + '/v1/create_session/';
       let response = await axios.post(url, formData);
       console.log(response)
+      if(response.status==200 || response.status==201){
+        dispatch(getMySessions());
+        notify();
+      }
     }catch(e){
 
     }
   }
 
   function handleChange(date, dateString){
-    console.log(date, dateString);
     let isoDate = date.toISOString()
     handleCreateSession(isoDate)
   }

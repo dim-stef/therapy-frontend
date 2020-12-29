@@ -14,7 +14,7 @@ const RegisterTherapist = () => {
   const {token} = useSelector(state=>state.authentication);
 
   if(token){
-    history.push('/');
+    history.push(`/verification/${token}`);
   }
 
   const [result, setResult] = useState(null);
@@ -29,7 +29,7 @@ const RegisterTherapist = () => {
         office_number: values.office_number,
         phone_number:values.phone_number,
         address: values.address,
-        specialisation: values.specialisation,
+        //specialisation: values.specialisation,
         is_therapist:true,
         password1: values.password1,
         password2: values.password2
