@@ -85,7 +85,7 @@ export const getUserData = createAsyncThunk(
       console.log(userToken);
       console.log(userToken, localStorage);
       userData.token = userToken;
-      axios.defaults.withCredentials = true;
+      //axios.defaults.withCredentials = true;
       axios.interceptors.request.use(function (config) {
         const token = userToken;
 
