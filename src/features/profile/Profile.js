@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
-import {useHistory} from 'react-router-dom';
-import { Button, Typography, Divider, Tabs } from 'antd';
+import {useHistory, useParams, useLocation} from 'react-router-dom';
+import { Button, Typography, Divider, Tabs, Alert } from 'antd';
 import {useSelector} from 'react-redux';
 import UpdateProfileSection from './UpdateProfileSection';
 import AvailabilitySection from './AvailabilitySection';
@@ -9,6 +9,9 @@ import './profile.css';
 
 
 function Profile(){
+  const params = useParams();
+  const location = useLocation();
+  console.log(params, location);
   const {user} = useSelector(state=>state.authentication);
 
   function callback(key) {
@@ -18,6 +21,7 @@ function Profile(){
   return(
     <div className="App-container">
       <div className="profile-container" style={{display:'block'}}>
+        <Alerts/>
         <div>
           <h1 style={{textAlign:'start'}}>Hi, {user.profile.name}</h1>
           {user.therapist?<TherapistSection/>:null}
@@ -40,6 +44,7 @@ function Profile(){
 }
 
 function TherapistSection(){
+  const history = useHistory();
   const {user} = useSelector(state=>state.authentication);
   const [loading, setLoading] = useState(false);
   const [loginUrl, setLoginUrl] = useState(null);
@@ -65,6 +70,10 @@ function TherapistSection(){
     window.location.href = user.profile.stripe_account_link;
   }
 
+  function handleVerificationClick(){
+    history.push(`/verification/${user.profile.id}`)
+  }
+
   useEffect(()=>{
     if(user.profile.charges_enabled){
       getStripeLoginLink()
@@ -72,16 +81,45 @@ function TherapistSection(){
   },[user.profile.charges_enabled])
 
   return(
-    <div className="profile-row-container">
-      
+    <>
+    <div className="profile-row-container" >
+      <h2 style={{fontWeight:'bold'}}>Verification</h2>
+      <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
+        <Typography.Paragraph style={{textAlign:'start'}}>{user.therapist.status=='IN'?`Your account is not yet verified. In order 
+        to accept sessions you have to get verified first with the corresponding documents.`:
+        `Your account is verified.`}</Typography.Paragraph>
+        <Button type="primary" danger={user.therapist.status=='IN'} onClick={handleVerificationClick}>
+        {user.therapist.status=='IN'?'Get verified':'Already verified'}</Button>
+      </div>
+    </div>
+    <div className="profile-row-container" style={{marginTop:20}}>
       <h2 style={{fontWeight:'bold'}}>Payment method</h2>
       <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start'}}>
         <Typography.Paragraph style={{textAlign:'start'}}>{chargesEnabled?'Go to your dashboard to check your balance.':
         `To get paid you need to create a stripe account. You can later login to stripe to manage your payments.`}</Typography.Paragraph>
-        <Button type="primary" loading={loading} onClick={chargesEnabled?handleLoginClick:handleSetupStripeClick}>
+        <Button type="primary" loading={loading} danger={!chargesEnabled}
+        onClick={chargesEnabled?handleLoginClick:handleSetupStripeClick}>
         {chargesEnabled?'View your dashboard':'Setup payment method'}</Button>
       </div>
     </div>
+    </>
+  )
+}
+
+function Alerts(){
+  const {user} = useSelector(state=>state.authentication);
+
+  return(
+    <>
+    {user.therapist && !user.profile.charges_enabled?
+    <Alert
+      showIcon
+      message="Account activation"
+      description="You need to setup your payment method below to accept sessions."
+      type="warning"
+      style={{marginBottom:20, textAlign:'start'}}
+    />:null}
+    </>
   )
 }
 

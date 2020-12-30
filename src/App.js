@@ -32,7 +32,6 @@ function App() {
   const {user, token, checkingForToken} = useSelector(state=>state.authentication);
 
   useEffect(()=>{
-    console.log("tokken", token)
     dispatch(getUserData())
   },[token, dispatch])
   
@@ -51,7 +50,7 @@ function App() {
               <Route exact path="/">
                 {token?<HomeScreen/>:<LandingPageScreen />}
               </Route>
-              <Route path="/me">
+              <Route path="/me/:initial?">
                 <ProfileScreen />
               </Route>
               <Route path="/users/oauth/callback">

@@ -5,14 +5,15 @@ function UploadSuccess(){
   const history = useHistory();
 
   function handleClick(){
-    history.push('/');
+    history.push('/me/initial');
   }
 
   return(
     <div className="App-container">
       <h1>Upload succeeded!</h1>
-      <h2>Your documents have been uploaded and will be notified when they are verified.</h2>
-      <Button type="primary" onClick={handleClick}>Take me back home</Button>
+      <h3 style={{maxWidth:800}}>Your documents have been uploaded and will be notified when they are verified. In the meantime 
+      proceed to finish setting up your account.</h3>
+      <Button type="primary" onClick={handleClick}>Take me to my profile page</Button>
     </div>
   )
 }
