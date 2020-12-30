@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react';
 import { DatePicker, Space, Select, TimePicker, Button } from 'antd';
 import { CloseCircleFilled } from '@ant-design/icons';
 import moment from 'moment';
+import {useDispatch} from 'react-redux';
+import {getUserData} from '../authentication/authenticationSlice';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -32,19 +34,34 @@ const days = [
 ]
 
 function AvailabilitySection({therapist}){
+  const dispatch = useDispatch();
   const [selectedDay, setSelectedDay] = useState(days[0]);
   const [currentAvailabilityRanges, setCurrentAvailabilityRanges] = useState(therapist.availability_times);
+  const [loading, setLoading] = useState(false);
 
-  console.log(therapist);
   function handleChange(value, value_str, range){
-    console.log(value, value_str)
-    setCurrentAvailabilityRanges(ranges=>{
-      let newRanges = [...ranges];
-      let rangeIndex = newRanges.findIndex(r=>r.id==range.id);
-      newRanges[rangeIndex].start_time = value_str[0] + ':00:00';
-      newRanges[rangeIndex].end_time = value_str[1] + ':00:00';
-      return newRanges;
-    })
+
+    if(value){
+      setCurrentAvailabilityRanges(ranges=>{
+        // doing some js magic here to assign new properties on the existing
+        // "currentAvailabilityRanges" array
+
+        let newRanges = [...ranges];
+        let rangeIndex = newRanges.findIndex(r=>r.id==range.id);
+
+        let newRange = newRanges[rangeIndex];
+
+        // the above variable contains read-only properties so we clone it to skip this problem
+        let clone = JSON.parse(JSON.stringify(newRange));
+        clone.start_time = value_str[0] + ':00:00';
+        clone.end_time = value_str[1] + ':00:00';
+
+        newRanges[rangeIndex] = clone;
+        return newRanges;
+      })
+    }else{
+
+    }
   }
   
   function handleDayChange(value){
@@ -87,12 +104,19 @@ function AvailabilitySection({therapist}){
       let data = {
         available_times:currentAvailabilityRanges
       }
+      setLoading(true);
       let response = await axios.post(url,data);
+      setLoading(false);
+      dispatch(getUserData());
     }catch(e){
+      setLoading(false);
       console.error(e);
     }
   }
 
+  function onCalendarChange(date1,date2){
+    console.log(date1,date2);
+  }
   return(
     <Space direction="vertical" align="start">
       <Select defaultValue={selectedDay.value} style={{ width: 120 }} onChange={handleDayChange}>
@@ -106,13 +130,13 @@ function AvailabilitySection({therapist}){
         return(
           <div key={i} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
             <RangePicker value={[moment(range.start_time, 'HH'), moment(range.end_time, 'HH')]} 
-            format="HH" onChange={(start, end)=>handleChange(start, end, range)}/>
+            format="HH" onChange={(start, end)=>handleChange(start, end, range)} onCalendarChange={onCalendarChange}/>
             <CloseCircleFilled style={{marginLeft:5, color:'#cacaca'}} onClick={()=>handleRemoveRange(range)}/>
           </div>
         )
       })}
       <Button type="dashed" onClick={handleAddTime}>Add more times</Button>
-      <Button type="primary" onClick={handleUpdateTimes}>Save</Button>
+      <Button type="primary" loading={loading} onClick={handleUpdateTimes}>Save</Button>
     </Space>
   )
 }

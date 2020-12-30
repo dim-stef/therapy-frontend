@@ -56,10 +56,10 @@ function getDisabledHoursFromAvailability(times){
   return result;
 }
 
-function disabledDateTime(hours) {
+function disabledDateTime(hours, minutes) {
   return {
     disabledHours: () => hours,//range(0, 24).splice(4, 20),
-    //disabledMinutes: () => range(30, 60),
+    disabledMinutes: () => minutes,
   };
 }
 
@@ -68,6 +68,7 @@ function DatetimePicker({therapist, onOk}){
   const history = useHistory();
   const dispatch = useDispatch();
   const [disabledHours, setDisabledHours] = useState([]);
+  const [disabledMinutes, setDisabledMinutes] = useState([]);
 
   const notify = () => {
     toast("Your session has been requested, click here to view its status.", {
@@ -80,10 +81,17 @@ function DatetimePicker({therapist, onOk}){
   // find which hours the therapists has appointments and disable them
   function handleSelect(date){
     
+    console.log(date.hour());
     // here we get the standard hours that the therapist has set
     // he is not available
     let _day = date.day();
-    let foundDay = days.find(d=>d.value==_day)
+    let foundDay = days.find(d=>d.value==_day);
+    
+    // something very bad happened here, lets just ignore it for now
+    if(!foundDay){
+      return;
+    }
+
     let available_times = therapist.availability_times.filter(availability=>availability.weekday==foundDay.value).map(availability=>{
       let startTime = parseInt(availability.start_time.substring(0, 2));
       let endTime = parseInt(availability.end_time.substring(0, 2)) + 1; // plus 1 to include the last hour
@@ -101,12 +109,18 @@ function DatetimePicker({therapist, onOk}){
       let endDate = moment(session.end_date);
       if(startDate.date()==day){
         disabled.push(startDate.hour());
-        //disabled.push(endDate.hour());
+        disabled.push(endDate.hour());
       }
     })
 
     // at the end we concat the two arrays together
-    setDisabledHours(disabled.concat(standardDisabledHours));
+    let finalDisabledHours = disabled.concat(standardDisabledHours)
+    if(finalDisabledHours.includes(date.hour())){
+      setDisabledMinutes(range(0, 60));
+    }else{
+      setDisabledMinutes(range(0, 0));
+    }
+    setDisabledHours(finalDisabledHours);
   }
 
   async function handleCreateSession(dateString){
@@ -140,7 +154,8 @@ function DatetimePicker({therapist, onOk}){
         onOk={onOk}
         placeholder="Buy a session"
         format="YYYY-MM-DD HH:mm"
-        disabledTime={()=>disabledDateTime(disabledHours)}
+        disabledTime={()=>disabledDateTime(disabledHours, disabledMinutes)}
+        showNow={false}
         showTime={{ defaultValue: moment('00:00:00', 'HH:mm') }}
       />
     </Space>
