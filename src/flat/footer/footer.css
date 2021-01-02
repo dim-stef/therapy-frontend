@@ -1,0 +1,38 @@
+.footer-items-container{
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+  justify-content: space-evenly;
+  padding-top: 60px;
+}
+
+.footer-col{
+  display: flex;
+  flex-flow: column;
+  max-width: 260px;
+  align-items: flex-start;
+  text-align: start;
+  margin: 20px;
+  width: 33%;
+  min-width: 200px;
+}
+
+.footer-col-title{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  color: rgb(226, 103, 16);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+@media all and (max-width:767px){
+  .footer-items-container{
+    padding: 0;
+  }
+
+  .footer-col{
+    width: 70%;
+  }
+}

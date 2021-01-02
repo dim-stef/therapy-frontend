@@ -23,8 +23,8 @@ function WhyChooseUs(){
   ]
 
   return(
-    <div style={{width:'100%', justifyContent:'center', alignItems:'center',
-    marginTop:70}}>
+    <div style={{width:'100%', display:'flex', flexFlow:'column', 
+    justifyContent:'center', alignItems:'center', marginTop:70}}>
       <Title style={{fontWeight:'bold'}}>Why choose us</Title>
       {items.map(item=>{
         return(

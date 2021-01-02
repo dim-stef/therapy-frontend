@@ -1,0 +1,13 @@
+.ant-carousel .slick-dots li button {
+  background: #e26710 !important;
+  opacity: 0.4 !important;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  opacity: 1 !important;
+  background: #e26710 !important;
+}
+
+.ant-carousel .slick-dots li button{
+  height: 5px !important;
+}

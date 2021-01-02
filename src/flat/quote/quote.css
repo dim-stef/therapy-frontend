@@ -1,0 +1,26 @@
+.quote-container{
+  width: 60%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+  margin: 0 auto;
+}
+
+.quote-description{
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #656565;
+  font-style: italic;
+}
+
+@media all and (max-width: 767px){
+  .quote-container{
+    width: 90%;
+  }
+
+  .quote-description{
+    font-size: 1rem;
+  }
+}

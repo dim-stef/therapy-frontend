@@ -1,0 +1,26 @@
+.faq-container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 70%;
+}
+
+.faq-item{
+  display: flex;
+  flex-flow: column;
+  width: 40%;
+  margin: 20px;
+}
+
+@media all and (max-width: 767px){
+  .faq-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 90%;
+  }
+
+  .faq-item{
+    width: auto;
+  }
+}
