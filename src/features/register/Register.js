@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Typography } from 'antd';
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
@@ -56,12 +56,23 @@ function Register(){
         style={{}}
         onFinish={onFinish}
       >
-        <h1 style={{fontWeight:'bold'}}>Create account</h1>
+        <h1 style={{fontWeight:'bold'}}>Δημιούργησε λογαργιασμό</h1>
+        <Form.Item>
+          <Typography.Text strong>Είσαι ψυχολόγος?</Typography.Text>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" onClick={handleCreateTherapistAccount}>
+            Φτίαξε συνεργατικό λογαργιασμό
+          </Button>
+        </Form.Item>
+        <Form.Item>
+          <Typography.Text strong>Η</Typography.Text>
+        </Form.Item>
         <Form.Item
           name="name"
           rules={[{ required: true, message: 'Please enter your name' }]}
         >
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Name" />
+          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Όνομα" />
         </Form.Item>
         <Form.Item
           name="email"
@@ -100,7 +111,7 @@ function Register(){
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password again"
+            placeholder="Password ξανά"
           />
         </Form.Item>
         <div>
@@ -111,28 +122,20 @@ function Register(){
             return <div className="ant-form-item-explain ant-form-item-explain-error">{r}</div>
           }):null}
         </div>
-        <Form.Item>
-          <span>or</span>
-        </Form.Item>
-        <Form.Item>
-          
-          <Button type="default" onClick={handleCreateTherapistAccount}>
-            Create a therapist account
-          </Button>
-        </Form.Item>
-        
         <Form.Item style={{display:'flex', flexFlow:'column'}}>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Register
+            Εγγραφή
           </Button>
           <div style={{marginTop:10}}>
-            <Link to="/login">Already have an account?</Link>
+            <Link to="/login">Έχεις ήδη λογαριασμό?</Link>
           </div>
+          {/*
           <div>
             <Link className="login-form-forgot">
               Forgot password
             </Link>
-          </div>
+          </div> */}
+          
         </Form.Item>
       </Form>
     </div>

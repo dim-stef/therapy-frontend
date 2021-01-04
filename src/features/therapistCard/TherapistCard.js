@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import { Skeleton, Switch, Card, Avatar, Typography } from 'antd';
+import { Skeleton, Tag, Card, Avatar, Typography } from 'antd';
 import {CardElement, useStripe, Elements , useElements} from '@stripe/react-stripe-js';
 import DatetimePicker from '../datetimePicker/DatetimePicker';
 import axios from 'axios';
@@ -88,8 +88,19 @@ function TherapistCard({therapist}){
           <Avatar size="large" style={{backgroundColor:color}}>{therapist.profile.name.substring(0,2).toUpperCase()}</Avatar>}
           <Typography.Paragraph style={{marginBottom:0, marginLeft:10, fontWeight:'bold', fontSize:'1rem'}}>{therapist.profile.name}</Typography.Paragraph>
       </div>
+      {therapist.specialties.length > 0 ? (
+        <div style={{marginTop:10, display:'flex', flexFlow:'row wrap'}}>
+            {therapist.specialties.map(sp=>{
+              return(
+                <Tag style={{marginTop:3}}>{sp}</Tag>
+              )
+            })}
+        </div>
+      ):
+      null}
+      
       <div style={{margin:'20px 0px'}}>
-        <Typography.Paragraph style={{marginBottom:0, textAlign:'start', fontWeight:'bold'}}>Therapist bio</Typography.Paragraph>
+        <Typography.Paragraph style={{marginBottom:0, textAlign:'start', fontWeight:'bold'}}>Βιογραφία</Typography.Paragraph>
         <Typography.Paragraph style={{textAlign:'start'}} ellipsis={{ rows: 4, expandable: true, symbol: 'more' }}>
           {therapist.bio}
         </Typography.Paragraph>

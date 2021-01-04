@@ -20,11 +20,15 @@
 }
 
 .ant-form{
-  width: 250px;
+  width: 400px;
 }
 
 h1{
+  font-size: 1.7em;
   font-weight: 700;
+}
+body{
+  font-size: 16px;
 }
 *{
   font-family: 'Nunito Sans', sans-serif;
@@ -32,6 +36,7 @@ h1{
 
 @media all and (max-width: 767px){
   .ant-form{
+    margin: 20px;
     width: auto;
   }
 }

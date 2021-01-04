@@ -51,7 +51,7 @@ const Login = () => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
-        <h1 style={{fontWeight:'bold'}}>Login</h1>
+        <h1 style={{fontWeight:'bold'}}>Συνδέσου</h1>
         <Form.Item
           name="email"
           rules={[{ required: true, message: 'Please input your email' }]}
@@ -70,19 +70,19 @@ const Login = () => {
         </Form.Item>
         {error?<div className="ant-form-item-explain ant-form-item-explain-error">
         Your email or password did not match</div>:null}
-        <Form.Item>
+        {/*<Form.Item>
           <a className="login-form-forgot" href="">
             Forgot password
           </a>
         </Form.Item>
-
+        */}
         <Form.Item style={{display:'flex', flexFlow:'column'}}>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Log in
+            Συνδέσου
           </Button>
           <div style={{marginTop:10}}>
-            <span>or </span>
-            <Link to="/register">register now!</Link>
+            <span>Ή </span>
+            <Link to="/register">δημιούργησε λογαργιασμό!</Link>
           </div>
         </Form.Item>
       </Form>

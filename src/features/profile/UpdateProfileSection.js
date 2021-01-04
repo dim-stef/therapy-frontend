@@ -20,16 +20,6 @@ const UpdateProfileSection = () => {
     setName(user.profile.name);
   },[user.profile.name])
 
-  const normFile = (e) => {
-    console.log('Upload event:', e, e.fileList,e && e.fileList);
-  
-    if (Array.isArray(e)) {
-      return e;
-    }
-  
-    return e && e.fileList;
-  };
-
   async function onFinish(values){
     console.log(values);
     const newAvatar = values.avatar?values.avatar:null;
@@ -55,7 +45,6 @@ const UpdateProfileSection = () => {
   }
 
   function handleRemove(){
-
     setAvatar(null);
   }
 
@@ -96,7 +85,6 @@ const UpdateProfileSection = () => {
                 {user.profile.avatar?<Avatar src={`${process.env.REACT_APP_DOMAIN}${user.profile.avatar}`} size={50}/>:<UserOutlined />}
               </p>
               <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">Support for a single or bulk upload.</p>
             </Upload.Dragger>
           </Form.Item>
         </Form.Item>

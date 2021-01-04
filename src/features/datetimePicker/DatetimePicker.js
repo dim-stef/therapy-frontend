@@ -152,7 +152,7 @@ function DatetimePicker({therapist, onOk}){
         onChange={handleChange}
         onSelect={handleSelect}
         onOk={onOk}
-        placeholder="Buy a session"
+        placeholder="Κλείσε συνεδρία"
         format="YYYY-MM-DD HH:mm"
         disabledTime={()=>disabledDateTime(disabledHours, disabledMinutes)}
         showNow={false}
