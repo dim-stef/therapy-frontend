@@ -82,7 +82,7 @@ const Login = () => {
           </Button>
           <div style={{marginTop:10}}>
             <span>Ή </span>
-            <Link to="/register">δημιούργησε λογαργιασμό!</Link>
+            <Link to="/register">δημιούργησε λογαριασμό!</Link>
           </div>
         </Form.Item>
       </Form>

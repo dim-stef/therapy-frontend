@@ -2,6 +2,7 @@ import {
   Link
 } from "react-router-dom";
 import Hero from '../hero/Hero';
+import IntroLines from '../../flat/introLines/IntroLines';
 import PointBoxList from '../../flat/pointBoxList/PointBoxList';
 import WhyChooseUs from '../../flat/whyChooseUs/WhyChooseUs';
 import OurTherapists from '../../flat/ourTherapists/OurTherapists';
@@ -15,12 +16,13 @@ function LandingPage(){
   return(
     <div style={{width:'100%'}}>
       <Hero/>
-      <PointBoxList/>
+      <IntroLines/>
       <WhyChooseUs/>
+      <PointBoxList/>
       <BecomeMember/>
       <OurTherapists/>
-      <Quotes/>
       <BecomePartner/>
+      <Quotes/>
       <Faq/>
       <Footer/>
     </div>

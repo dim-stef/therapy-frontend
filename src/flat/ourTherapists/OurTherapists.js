@@ -7,7 +7,7 @@ function OurTherapists(){
   return(
     <div>
       <Typography.Title style={{fontWeight:'bold', marginTop:30}}>
-      Our therapists</Typography.Title>
+      Οι Θεραπευτές μας</Typography.Title>
       <div style={{display:'flex', flexFlow:'row wrap', 
       justifyContent:'center', marginTop:30}}>
         {therapists.map(therapist=>{

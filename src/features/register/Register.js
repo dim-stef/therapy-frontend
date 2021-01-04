@@ -56,13 +56,13 @@ function Register(){
         style={{}}
         onFinish={onFinish}
       >
-        <h1 style={{fontWeight:'bold'}}>Δημιούργησε λογαργιασμό</h1>
+        <h1 style={{fontWeight:'bold'}}>Δημιούργησε λογαριασμό</h1>
         <Form.Item>
           <Typography.Text strong>Είσαι ψυχολόγος?</Typography.Text>
         </Form.Item>
         <Form.Item>
           <Button type="primary" onClick={handleCreateTherapistAccount}>
-            Φτίαξε συνεργατικό λογαργιασμό
+            Φτιάξε συνεργατικό λογαριασμό
           </Button>
         </Form.Item>
         <Form.Item>

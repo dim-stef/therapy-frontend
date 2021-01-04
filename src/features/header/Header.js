@@ -13,7 +13,7 @@ function Header(){
   let darkBackground = false;
   darkBackground = (history.location.pathname === '/' && !token) || scroll > 0;
 
-  if(history.location.pathname === '/' && !token){
+  if(history.location.pathname === '/'){
     if(scroll>0){
       darkBackground = false;
     }else{
@@ -33,6 +33,10 @@ function Header(){
     history.push('/my_sessions');
   }
 
+  function handleTherapistClick(){
+    history.push('/therapists');
+  }
+  
   function scrollListener(e){
     setScroll(window.scrollY)
   }
@@ -48,27 +52,34 @@ function Header(){
   return(
     <div className={`header ${darkBackground?'header-dark':'header-light'}`}>
       <div style={{flex:1, display:'flex'}}>
-      <IconWrapper onClick={handleHomeClick}>
+      <IconWrapper onClick={handleHomeClick} darkBackground={darkBackground}>
         <HomeOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
       </IconWrapper>
         
       </div>
       {token?
-      <IconWrapper onClick={handleSessionClick}>
-        <CalendarOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
+      <IconWrapper onClick={handleSessionClick} darkBackground={darkBackground}>
+        {/*<CalendarOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
+        <p style={{margin: 0, fontWeight:'bold'}}>Συνεδρίες</p>
       </IconWrapper>
       :null}
-      <IconWrapper onClick={handleProfileClick}>
-        <UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>
+      {token?
+      <IconWrapper onClick={handleTherapistClick} darkBackground={darkBackground}>
+        <p style={{margin: 0, fontWeight:'bold'}}>Θεραπευτές</p>
+      </IconWrapper>
+      :null}
+      <IconWrapper onClick={handleProfileClick} darkBackground={darkBackground}>
+        {/*<UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
+        <p style={{margin: 0, fontWeight:'bold'}}>Το προφίλ μου</p>
       </IconWrapper>
     </div>
   )
 }
 
-function IconWrapper({children, onClick}){
+function IconWrapper({children, darkBackground, onClick}){
   return(
     <div onClick={onClick} role="button" style={{height:'100%', padding:10, display:'flex', 
-    justifyContent:'center', alignItems:'center', cursor:'pointer'}}>
+    justifyContent:'center', alignItems:'center', cursor:'pointer', color:darkBackground?'white':'black'}}>
       {children}
     </div>
   )

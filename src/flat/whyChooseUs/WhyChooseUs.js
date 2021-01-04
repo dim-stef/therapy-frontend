@@ -8,27 +8,33 @@ function WhyChooseUs(){
     {
       icon: <FieldTimeOutlined style={{fontSize:70}}/>,
       title: "Online therapy is fast",
-      subtext: "",
+      subtext: "Χρησιμοποιούμε αυστηρά κριτήρια για να επιλέξουμε εξειδικευμένους και άρτια καταρτισμένους συνεργάτες, ούτως ώστε να εξασφαλίσουμε το ύψιστο επίπεδο υπηρεσιών",
     },
     {
       icon: <WechatOutlined style={{fontSize:70}}/>,
       title: "Private and fast communication",
-      subtext: "",
+      subtext: "Online ή δια ζώσης θεραπεία; Σου δίνουμε την δυνατότητα να επιλέξεις ανάλογα με τις ανάγκες σου",
     },
     {
       icon: <CheckOutlined style={{fontSize:70}}/>,
       title: "Always available no matter where you are",
-      subtext: "",
+      subtext: "Η καινοτόμος πρωτοβουλία της DrEmpathy σε φέρνει σε άμεση επαφή με συνανθρώπους σου που αισθάνονται το ίδιο με σένα (προσεχώς)",
+    },
+    {
+      icon: <CheckOutlined style={{fontSize:70}}/>,
+      title: "Always available no matter where you are",
+      subtext: "Παρακολούθησε την συναισθηματική πρόοδο που επιτυγχάνεις μέσα από τις υπηρεσίες μας, μέσω του πρωτοποριακού εργαλείου 'DrEmpathy mood tracker' (προσεχώς)",
     },
   ]
+
 
   return(
     <div style={{width:'100%', display:'flex', flexFlow:'column', 
     justifyContent:'center', alignItems:'center', marginTop:70}}>
-      <Title style={{fontWeight:'bold'}}>Why choose us</Title>
+      <Title style={{fontWeight:'bold'}}>Γιατι να επιλέξετε την DrEmpathy</Title>
       {items.map(item=>{
         return(
-          <ChooseUsItem title={item.title}>{item.icon}</ChooseUsItem>
+          <ChooseUsItem title={item.title} subtext={item.subtext}>{item.icon}</ChooseUsItem>
         )
       })}
     </div>

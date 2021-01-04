@@ -48,7 +48,10 @@ function App() {
         <Layout>
             <Switch>
               <Route exact path="/">
-                {token?<HomeScreen/>:<LandingPageScreen />}
+                <LandingPageScreen />
+              </Route>
+              <Route path="/therapists">
+                <HomeScreen/>
               </Route>
               <Route path="/me/:initial?">
                 <ProfileScreen />

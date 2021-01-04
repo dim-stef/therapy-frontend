@@ -3,6 +3,6 @@
   flex-flow: row wrap;
   width: 100%;
   justify-content: space-evenly;
-  margin: -40px auto;
+  margin: 40px auto;
   max-width: 1200px;
 }
