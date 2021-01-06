@@ -25,6 +25,10 @@ function Header(){
     history.push(token?'/me':'/login');
   }
 
+  function handleBlogClick(){
+    history.push('/blogs');
+  }
+
   function handleHomeClick(){
     history.push('/');
   }
@@ -57,6 +61,10 @@ function Header(){
       </IconWrapper>
         
       </div>
+      <IconWrapper onClick={handleBlogClick} darkBackground={darkBackground}>
+        {/*<UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
+        <p style={{margin: 0, fontWeight:'bold'}}>Blog</p>
+      </IconWrapper>
       {token?
       <IconWrapper onClick={handleSessionClick} darkBackground={darkBackground}>
         {/*<CalendarOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}

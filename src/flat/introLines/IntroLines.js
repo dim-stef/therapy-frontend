@@ -7,7 +7,7 @@ function IntroLines(){
       a: 'Εδώ θα βρεις κάποιον να σε ακούσει'
     },
     {
-      q: 'Σε καταβάλει η καθημερινότητα;',
+      q: 'Σε καταβάλει το άγχος;',
       a: 'Θα σε βοηθήσουμε να διαχειριστείς καλύτερα την καθημερινότητα σου'
     }
   ] 
@@ -21,7 +21,7 @@ function IntroLines(){
               <p className="intro-line-text">{d.q}</p>
               
             </div>
-            <div className="intro-line"style={{backgroundColor:'#0f79ce'}}>
+            <div className="intro-line"style={{backgroundColor:'#248bde'}}>
               <p className="intro-line-text">{d.a}</p>
             </div>
           </div>

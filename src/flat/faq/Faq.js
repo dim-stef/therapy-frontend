@@ -12,7 +12,7 @@ function Faq(){
         {faq.map(f=>{
           return(
             <div className="faq-item">
-              <p style={{fontWeight:'bold', textAlign:'start', color:'#e26710'}}>
+              <p style={{fontWeight:'bold', textAlign:'start', color:'#248bde'}}>
               {f.question}</p>
               <p style={{textAlign:'start', color:'#656565'}}>{f.answer}</p>
             </div>

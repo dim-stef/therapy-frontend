@@ -5,7 +5,7 @@ function Quote({quote}){
     <div className="quote-container">
       <p className="quote-description">
       {quote.description}</p>
-      <p style={{fontWeight:'bold', color:'#e26710'}}> - {quote.from}</p>
+      <p style={{fontWeight:'bold', color:'#248bde'}}> - {quote.from}</p>
     </div>
   )
 }

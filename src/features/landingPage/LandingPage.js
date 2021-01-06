@@ -2,6 +2,7 @@ import {
   Link
 } from "react-router-dom";
 import Hero from '../hero/Hero';
+import BlogList from '../blog/BlogList';
 import IntroLines from '../../flat/introLines/IntroLines';
 import PointBoxList from '../../flat/pointBoxList/PointBoxList';
 import WhyChooseUs from '../../flat/whyChooseUs/WhyChooseUs';

@@ -22,6 +22,8 @@ import SessionApprovalScreen from './screens/SessionApprovalScreen';
 import MySessionsScreen from './screens/MySessionsScreen';
 import GetVerifiedScreen from './screens/GetVerifiedScreen';
 import UploadSuccessScreen from './screens/UploadSuccessScreen';
+import BlogListScreen from './screens/BlogListScreen';
+import BlogPostScreen from './screens/BlogPostScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from './logo.svg';
@@ -46,47 +48,53 @@ function App() {
       <ToastContainer />
       <Router>
         <Layout>
-            <Switch>
-              <Route exact path="/">
-                <LandingPageScreen />
-              </Route>
-              <Route path="/therapists">
-                <HomeScreen/>
-              </Route>
-              <Route path="/me/:initial?">
-                <ProfileScreen />
-              </Route>
-              <Route path="/users/oauth/callback">
-                <StripeLinkSuccessScreen />
-              </Route>
-              <Route path="/reauth">
-                <StripeRefreshUrlScreen />
-              </Route>
-              <Route path="/success">
-                <PurchaseSuccessScreen />
-              </Route>
-              <Route path="/my_sessions">
-                <MySessionsScreen />
-              </Route>
-              <Route path="/session/:id">
-                <SessionApprovalScreen />
-              </Route>
-              <Route path="/register">
-                <RegisterScreen />
-              </Route>
-              <Route path="/register_therapist">
-                <RegisterTherapistScreen />
-              </Route>
-              <Route path="/verification/:id">
-                <GetVerifiedScreen/>
-              </Route>
-              <Route path="/upload_success">
-                <UploadSuccessScreen/>
-              </Route>
-              <Route path="/login">
-                <LoginScreen />
-              </Route>
-            </Switch>
+          <Switch>
+            <Route exact path="/">
+              <LandingPageScreen />
+            </Route>
+            <Route path="/therapists">
+              <HomeScreen/>
+            </Route>
+            <Route path="/me/:initial?">
+              <ProfileScreen />
+            </Route>
+            <Route path="/users/oauth/callback">
+              <StripeLinkSuccessScreen />
+            </Route>
+            <Route path="/reauth">
+              <StripeRefreshUrlScreen />
+            </Route>
+            <Route path="/success">
+              <PurchaseSuccessScreen />
+            </Route>
+            <Route path="/my_sessions">
+              <MySessionsScreen />
+            </Route>
+            <Route path="/blog/:uid">
+              <BlogPostScreen />
+            </Route>
+            <Route path="/blogs">
+              <BlogListScreen />
+            </Route>
+            <Route path="/session/:id">
+              <SessionApprovalScreen />
+            </Route>
+            <Route path="/register">
+              <RegisterScreen />
+            </Route>
+            <Route path="/register_therapist">
+              <RegisterTherapistScreen />
+            </Route>
+            <Route path="/verification/:id">
+              <GetVerifiedScreen/>
+            </Route>
+            <Route path="/upload_success">
+              <UploadSuccessScreen/>
+            </Route>
+            <Route path="/login">
+              <LoginScreen />
+            </Route>
+          </Switch>
         </Layout>
       </Router>
     </div>

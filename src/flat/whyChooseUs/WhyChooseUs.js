@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import {FieldTimeOutlined, WechatOutlined, CheckOutlined } from '@ant-design/icons';
+import {FieldTimeOutlined, WechatOutlined, LineChartOutlined, UserOutlined } from '@ant-design/icons';
 import ChooseUsItem from '../chooseUsItem/ChooseUsItem';
 const { Title } = Typography;
 
@@ -16,12 +16,12 @@ function WhyChooseUs(){
       subtext: "Online ή δια ζώσης θεραπεία; Σου δίνουμε την δυνατότητα να επιλέξεις ανάλογα με τις ανάγκες σου",
     },
     {
-      icon: <CheckOutlined style={{fontSize:70}}/>,
+      icon: <UserOutlined style={{fontSize:70}}/>,
       title: "Always available no matter where you are",
       subtext: "Η καινοτόμος πρωτοβουλία της DrEmpathy σε φέρνει σε άμεση επαφή με συνανθρώπους σου που αισθάνονται το ίδιο με σένα (προσεχώς)",
     },
     {
-      icon: <CheckOutlined style={{fontSize:70}}/>,
+      icon: <LineChartOutlined style={{fontSize:70}}/>,
       title: "Always available no matter where you are",
       subtext: "Παρακολούθησε την συναισθηματική πρόοδο που επιτυγχάνεις μέσα από τις υπηρεσίες μας, μέσω του πρωτοποριακού εργαλείου 'DrEmpathy mood tracker' (προσεχώς)",
     },
