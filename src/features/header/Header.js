@@ -22,7 +22,7 @@ function Header(){
   }
 
   function handleProfileClick(){
-    history.push(token?'/me':'/login');
+    history.push(token?'/me':'/pre_login');
   }
 
   function handleBlogClick(){
@@ -78,7 +78,7 @@ function Header(){
       :null}
       <IconWrapper onClick={handleProfileClick} darkBackground={darkBackground}>
         {/*<UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
-        <p style={{margin: 0, fontWeight:'bold'}}>Το προφίλ μου</p>
+        <p style={{margin: 0, fontWeight:'bold'}}>{token?'Το προφίλ μου':'Συνδέσου'}</p>
       </IconWrapper>
     </div>
   )

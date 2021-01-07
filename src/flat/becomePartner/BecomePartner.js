@@ -4,7 +4,7 @@ import './becomePartner.css';
 function BecomePartner(){
   //TODO FIX ME REDIRECTS
   return(
-    <Link to="/register_therapist" className="become-partner">
+    <Link to="/pre_register" className="become-partner">
       <p className="become-partner-text">Γίνε συνεργάτης</p>
     </Link>
   )

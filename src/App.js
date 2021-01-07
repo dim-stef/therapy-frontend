@@ -24,6 +24,8 @@ import GetVerifiedScreen from './screens/GetVerifiedScreen';
 import UploadSuccessScreen from './screens/UploadSuccessScreen';
 import BlogListScreen from './screens/BlogListScreen';
 import BlogPostScreen from './screens/BlogPostScreen';
+import PreLoginScreen from './screens/PreLoginScreen';
+import PreRegisterScreen from './screens/PreRegisterScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from './logo.svg';
@@ -82,6 +84,9 @@ function App() {
             <Route path="/register">
               <RegisterScreen />
             </Route>
+            <Route path="/pre_register">
+              <PreRegisterScreen />
+            </Route>
             <Route path="/register_therapist">
               <RegisterTherapistScreen />
             </Route>
@@ -93,6 +98,9 @@ function App() {
             </Route>
             <Route path="/login">
               <LoginScreen />
+            </Route>
+            <Route path="/pre_login">
+              <PreLoginScreen />
             </Route>
           </Switch>
         </Layout>

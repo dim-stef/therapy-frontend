@@ -10,8 +10,15 @@ function GetVerified(){
   const history = useHistory();
   let { id } = useParams();
   const {user} = useSelector(state=>state.authentication);
+
+  // if user is either not a therapist or his status is active
+  // send him to the landing page
   if(!user.profile.is_therapist){
-    //history.push('/');
+    history.push('/');
+  }else{
+    if(user.therapist.status!='IN'){
+      history.push('/');
+    }
   }
   const [formLayout, setFormLayout] = useState('vertical');
   const [form] = Form.useForm();

@@ -1,8 +1,13 @@
 import {FieldTimeOutlined, PhoneOutlined, 
-  InfoCircleOutlined} from '@ant-design/icons';
+  InfoCircleOutlined, FacebookFilled, TwitterCircleFilled,
+  YoutubeFilled} from '@ant-design/icons';
 import './footer.css';
 
 function Footer(){
+  function handleFbClick(){
+
+  }
+
   return(
     <footer style={{minHeight:300, backgroundColor:'#408dca14',
     width:'100%'}}>
@@ -31,6 +36,15 @@ function Footer(){
           </div>
           <span>Η DrEmpathy είναι μια Online Πλατφόρμα παροχής υπηρεσιών Ψυχοθεραπείας.</span>
         </div>
+      </div>
+      <div className="footerer">
+        <span>Copyright © 2020 DrEmpathy. Powered by DrEmpathy.</span>
+        <div>
+          <FacebookFilled style={{cursor:'pointer', margin:'0 5px'}} onClick={handleFbClick}/>
+          <TwitterCircleFilled style={{cursor:'pointer', margin:'0 5px'}} onClick={handleFbClick}/>
+          <YoutubeFilled style={{cursor:'pointer', margin:'0 5px'}} onClick={handleFbClick}/>
+        </div>
+       
       </div>
     </footer>
   )
