@@ -13,7 +13,7 @@ function Hero(){
         <p style={{textAlign:'left', fontSize:'1.2em', color:'white'}}>{heroData.primary.details[0].text}</p>
       </div>
       <div style={{display:'flex', justifyContent:'center'}}>
-        <VideoCall className="hero-illustration"/>
+        <img src={heroData.primary.image.url} className="hero-illustration"/>
       </div>
     </div>
   )

@@ -19,13 +19,13 @@
   position: absolute;
   right: 0;
   top: 0;
-  height: 70%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   right: 0;
   width: 70%;
-  top: 60px;
+  top: 0;
 }
 
 @media all and (max-width: 1000px){
