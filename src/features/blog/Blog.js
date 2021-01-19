@@ -6,7 +6,7 @@ import { RichText } from 'prismic-reactjs';
 import SliceZone from './slices/SliceZone';
 import BackButton from './slices/BackButton';
 //import NotFound from './NotFound';
-import { client } from './prismicHelpers';
+import { client } from '../prismic/prismicHelpers';
 import './blog.css';
 
 /**
@@ -24,7 +24,7 @@ const Post = ({ match }) => {
     const fetchPrismicData = async () => {
       try {
         const doc = await client.getByUID('blog', uid);
-  
+
         if (doc) {
           setPrismicDoc(doc);
         } else {

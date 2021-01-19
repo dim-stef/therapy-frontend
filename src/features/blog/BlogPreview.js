@@ -4,7 +4,7 @@ import {Button} from 'antd';
 import { RichText } from 'prismic-reactjs';
 import PostDate from './PostDate';
 import FirstParagraph from './FirstParagraph';
-import { linkResolver } from './prismic-configuration';
+import { linkResolver } from '../prismic/prismic-configuration';
 
 /**
  * Post list item component

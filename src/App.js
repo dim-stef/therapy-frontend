@@ -27,6 +27,7 @@ import BlogPostScreen from './screens/BlogPostScreen';
 import PreLoginScreen from './screens/PreLoginScreen';
 import PreRegisterScreen from './screens/PreRegisterScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
+import {getLandingPageData} from './features/langingPageData/landingPageDataSlice'
 import 'react-toastify/dist/ReactToastify.css';
 import logo from './logo.svg';
 import './App.css';
@@ -34,13 +35,16 @@ import './App.css';
 function App() {
   const dispatch = useDispatch();
   const {user, token, checkingForToken} = useSelector(state=>state.authentication);
+  const {loading} = useSelector(state=>state.landingPageData);
+  console.log(loading);
 
   useEffect(()=>{
-    dispatch(getUserData())
+    dispatch(getUserData());
+    dispatch(getLandingPageData());
   },[token, dispatch])
-  
+
   console.log(user,token)
-  if(checkingForToken){
+  if(checkingForToken || loading){
     return(
       <LoadingScreen/>
     )

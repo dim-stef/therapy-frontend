@@ -31,7 +31,7 @@ function WhyChooseUs(){
   return(
     <div style={{width:'100%', display:'flex', flexFlow:'column', 
     justifyContent:'center', alignItems:'center', marginTop:70}}>
-      <Title style={{fontWeight:'bold'}}>Γιατι να επιλέξετε την DrEmpathy</Title>
+      <Title style={{fontWeight:'bold'}}>Γιατί να επιλέξετε την DrEmpathy</Title>
       {items.map(item=>{
         return(
           <ChooseUsItem title={item.title} subtext={item.subtext}>{item.icon}</ChooseUsItem>

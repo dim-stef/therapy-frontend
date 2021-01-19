@@ -1,8 +1,8 @@
 import React from 'react';
 import { RichText } from 'prismic-reactjs';
 //import { linkResolver } from '../../../prismic-configuration';
-import { linkResolver } from '../prismic-configuration';
-import { customLink } from '../prismicHelpers';
+import { linkResolver } from '../../prismic/prismic-configuration';
+import { customLink } from '../../prismic/prismicHelpers';
 
 /**
  * Text slice component

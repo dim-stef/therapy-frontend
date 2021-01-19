@@ -37,6 +37,10 @@ function Header(){
     history.push('/my_sessions');
   }
 
+  function handleForTherapistsClick(){
+    history.push('/pre_register');
+  }
+
   function handleTherapistClick(){
     history.push('/therapists');
   }
@@ -80,6 +84,12 @@ function Header(){
         {/*<UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
         <p style={{margin: 0, fontWeight:'bold'}}>{token?'Το προφίλ μου':'Συνδέσου'}</p>
       </IconWrapper>
+      {token?
+      <IconWrapper onClick={handleForTherapistsClick} darkBackground={darkBackground}>
+        {/*<CalendarOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
+        <p style={{margin: 0, fontWeight:'bold'}}>Για επαγγελματίες</p>
+      </IconWrapper>
+      :null}
     </div>
   )
 }

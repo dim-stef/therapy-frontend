@@ -1,0 +1,43 @@
+.ant-tabs-nav-wrap{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.custom-tab-component{
+  padding: 20px;
+  background-color: white;
+  width: 200px;
+  height: 150px;
+  max-width: 300px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-item-container .ant-tabs-tab-active .custom-tab-component{
+  background: linear-gradient(90deg, #218BBF 0%, #45B6ED 100%);
+  fill: white;
+  color: white !important;
+}
+
+.landing-item-container .ant-tabs-nav-wrap{
+  border-radius: 10px;
+  overflow: hidden !important;
+  /*border: 1px solid #f3f3f3;*/
+  background-color: white;
+}
+
+.landing-item-container .ant-tabs-tab{
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: white !important;
+}
+
+.landing-item-container .ant-tabs-ink-bar{
+  display: none !important;
+}
+
+.landing-item-container .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before{
+  border: none !important;
+}
