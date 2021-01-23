@@ -8,7 +8,7 @@ function Testimonials(){
   return(
     <div className="landing-item-container" style={{backgroundColor: '#f5f7fb'}}>
       <div className="landing-item-half-box" style={{textAlign:'start'}}>
-        <h1 style={{fontSize: '3.2rem'}}>
+        <h1>
           {reviews.primary.title[0].text}
         </h1>
         <p>{reviews.primary.details[0].text}</p>
@@ -21,7 +21,7 @@ function Testimonials(){
               <p>{item.testimonial_details[0].text}</p>
               <div style={{display:'flex', flexFlow:'row', justifyContent:'center'}}>
                 <img src={item.icon.url} style={{objectFit:'cover', height:60, width:60, borderRadius:'50%'}}/>
-                <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start', justifyContent:'center'}}>
+                <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start', justifyContent:'center', marginLeft: 10}}>
                   <b>{item.doctor_name[0].text}</b>
                 </div>
               </div>

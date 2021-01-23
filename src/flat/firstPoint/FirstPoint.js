@@ -12,7 +12,7 @@ function FirstPoint(){
       </div>
       <div className="landing-item-half-box" 
       style={{display:'flex',flexFlow:'column',alignItems:'flex-start', textAlign:'start'}}>
-        <h1 style={{fontSize:'3.2rem'}}>{firstPointData.primary.title[0].text}</h1>
+        <h1>{firstPointData.primary.title[0].text}</h1>
         <p>{firstPointData.primary.details[0].text}</p>
       </div>
     </div>

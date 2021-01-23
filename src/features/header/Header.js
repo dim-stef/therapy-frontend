@@ -11,13 +11,16 @@ function Header(){
 
   // if we are on landing page the background is "dark" and the header icons should be white
   let darkBackground = false;
+  let transparentHeader = false;
   darkBackground = (history.location.pathname === '/' && !token) || scroll > 0;
 
   if(history.location.pathname === '/'){
     if(scroll>0){
       darkBackground = false;
+      transparentHeader = false;
     }else{
       darkBackground = true;
+      transparentHeader = true;
     }
   }
 
@@ -58,7 +61,8 @@ function Header(){
   },[])
 
   return(
-    <div className={`header ${darkBackground?'header-dark':'header-light'}`}>
+    <div className={`header ${darkBackground?'header-dark':'header-light'}`} 
+    style={{backgroundColor:transparentHeader?'transparent':null}}>
       <div style={{flex:1, display:'flex'}}>
       <IconWrapper onClick={handleHomeClick} darkBackground={darkBackground}>
         <HomeOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>

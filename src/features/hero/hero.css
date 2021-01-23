@@ -30,7 +30,6 @@
 
 @media all and (max-width: 1000px){
   .hero-illustration{
-    width: 60%;
     height: 70%;
     top: 60px;
   }

@@ -28,11 +28,8 @@ function LandingPage(){
       <SecondPointBox/>
       <LandingTabs/>
       <Services/>
-      <BecomeMember/>
       <Testimonials/>
       <OurTherapists/>
-      <BecomePartner/>
-      <Faq/>
       <Footer/>
     </div>
   )

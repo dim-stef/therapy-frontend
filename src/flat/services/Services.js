@@ -8,9 +8,13 @@ function Services(){
 
   return(
     <div className="landing-item-container" style={{backgroundColor: '#f5f7fb'}}>
-      <div style={{display:'flex', flexFlow:'column'}}>
-        <h1>Lorem ipsum</h1>
-        <p>A team of expert doctors that are leading our clinic! Meet our staff and visit us for your next problem!</p>
+      <div style={{backgroundImage: `url(${serviceItems.primary.background_image.url})`, position:'absolute',
+      top:0,left:0,width:'100%',height:'100%'}}>
+
+      </div>
+      <div style={{display:'flex', flexFlow:'column', zIndex:1}}>
+        <h1 style={{color: 'white'}}>{serviceItems.primary.title[0].text}</h1>
+        <p style={{color: 'white'}}>{serviceItems.primary.details[0].text}</p>
         <div style={{display: 'flex', flexFlow:'row wrap', justifyContent:'space-evenly', width:'100%',marginTop:60}}>
           {serviceItems.items.map((item, i)=>(
             <React.Fragment key={i}>

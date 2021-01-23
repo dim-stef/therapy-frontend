@@ -11,7 +11,7 @@ function SecondPointBox(){
     <div className="landing-item-container" style={{backgroundColor:'#f5f7fb'}}>
       <div className="landing-item-half-box" 
       style={{display:'flex',flexFlow:'column',alignItems:'flex-start', textAlign:'start'}}>
-        <h1 style={{fontSize:'3.2rem'}}>Lorem ipsum</h1>
+        <h1>{secondPointData.primary.title[0].text}</h1>
         <div style={{width: '100%', display:'flex', flexFlow:'row wrap'}}>
           {secondPointData.items.map((item,i)=>{
             return(
