@@ -9,7 +9,7 @@ import { linkResolver } from '../prismic/prismic-configuration';
 /**
  * Post list item component
  */
-const PostItem = ({ post }) => {
+const PostItem = ({ post, small=false }) => {
   const history = useHistory();
   const title =
     RichText.asText(post.data.title) ?
@@ -19,27 +19,27 @@ const PostItem = ({ post }) => {
   function handleReadMoreClick(){
     history.push(linkResolver(post));
   }
-
   return (
-    <div className="blog-post">
+    <div className="blog-post" style={{maxWidth: small? '29%' : null}}>
       {post.data.preview_image?(
         <div style={{width:'100%'}}>
           <img style={{width:'100%'}} src={post.data.preview_image.url}/>
         </div>
       ):null}
-      
-      <Link to={linkResolver(post)}>
-        <h2>{title}</h2>
-      </Link>
+      <div style={{display:'flex', flexFlow:'column', padding: 20}}>
+        <PostDate date={post.last_publication_date} />
 
+        <Link to={linkResolver(post)}>
+          <h2 style={{fontSize:small?'1.1rem':null, fontWeight:'bold'}}>{title}</h2>
+        </Link>
 
-      <PostDate date={post.last_publication_date} />
-      
-      <FirstParagraph
-        sliceZone={post.data.body}
-        textLimit={300}
-      />
-      <Button type="primary" onClick={handleReadMoreClick}>Read more</Button>
+        <FirstParagraph
+          sliceZone={post.data.body}
+          textLimit={small?130:300}
+          small={small}
+        />
+        <Button type="primary" onClick={handleReadMoreClick}>Read more</Button>
+      </div>
     </div>
   );
 };

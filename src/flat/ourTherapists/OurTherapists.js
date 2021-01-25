@@ -5,7 +5,7 @@ import therapists from './therapists.json';
 function OurTherapists(){
   console.log(therapists);
   return(
-    <div>
+    <div className="landing-item-container">
       <Typography.Title style={{fontWeight:'bold', marginTop:30}}>
       Οι Θεραπευτές μας</Typography.Title>
       <div style={{display:'flex', flexFlow:'row wrap', 

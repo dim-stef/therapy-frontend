@@ -4,7 +4,7 @@ import PostItem from './BlogPreview';
 import {client, apiEndpoint, accessToken} from '../prismic/prismicHelpers';
 import './blog.css';
 
-function BlogList(){
+function BlogList({small=false}){
   const [blogPosts, setDocData] = useState(null)
 
   useEffect(() => {
@@ -20,14 +20,12 @@ function BlogList(){
     fetchData()
   }, [])
 
-  console.log(blogPosts);
-
   if(blogPosts){
     return(
       <div className="App-container">
         <div style={{display:'flex', flexFlow:'row wrap', justifyContent:'center'}}>
           {blogPosts.map((post) => (
-            <PostItem post={post} key={post.id} />
+            <PostItem post={post} key={post.id} small={small}/>
           ))}
         </div>
       </div>

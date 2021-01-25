@@ -1,16 +1,20 @@
 import {FieldTimeOutlined, PhoneOutlined, 
   InfoCircleOutlined, FacebookFilled, TwitterCircleFilled,
   YoutubeFilled} from '@ant-design/icons';
+import {useSelector} from 'react-redux';
 import './footer.css';
 
 function Footer(){
+  const {data} = useSelector((state)=>state.landingPageData);
+  const footerData = data.find(d=>d.slice_type=='footer');
+
   function handleFbClick(){
 
   }
 
   return(
-    <footer style={{minHeight:300, backgroundColor:'#408dca14',
-    width:'100%'}}>
+    <footer style={{minHeight:300, backgroundImage: `url(${footerData.primary.image.url})`,
+    width:'100%', backgroundPosition:'center', backgroundSize:'cover', paddingTop:150}}>
       <div className="footer-items-container">
         <div className="footer-col">
           <div className="footer-col-title">

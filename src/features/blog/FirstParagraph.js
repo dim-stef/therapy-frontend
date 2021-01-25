@@ -4,7 +4,7 @@ import { RichText } from 'prismic-reactjs';
 /**
  * Component that returns the first paragraph of a post
  */
-const FirstParagraph = ({ sliceZone, textLimit = 300 }) => {
+const FirstParagraph = ({ sliceZone, textLimit = 300, small=false }) => {
   // Find the first text slice of post's body
   const firstTextSlice = sliceZone.find(slice => slice.slice_type === 'text');
 
@@ -17,7 +17,7 @@ const FirstParagraph = ({ sliceZone, textLimit = 300 }) => {
       limitedText = `${limitedText.substring(0, limitedText.lastIndexOf(' '))}...`;
     }
     
-    return <p>{limitedText}</p>;
+    return <p style={{fontSize: small? '0.8rem': null}}>{limitedText}</p>;
   }
 
   // If there are no slices of type 'text', return nothing

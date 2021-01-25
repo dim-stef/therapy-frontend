@@ -11,7 +11,12 @@ function SecondPointBox(){
     <div className="landing-item-container" style={{backgroundColor:'#f5f7fb'}}>
       <div className="landing-item-half-box" 
       style={{display:'flex',flexFlow:'column',alignItems:'flex-start', textAlign:'start'}}>
-        <h1>{secondPointData.primary.title[0].text}</h1>
+        <div style={{position: 'relative'}}>
+          <div className="header-placeholder" 
+          style={{backgroundImage: `url(${secondPointData.primary.placeholder.url})`}}></div>
+          <h1>{secondPointData.primary.title[0].text}</h1>
+        </div>
+        
         <div style={{width: '100%', display:'flex', flexFlow:'row wrap'}}>
           {secondPointData.items.map((item,i)=>{
             return(

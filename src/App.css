@@ -38,7 +38,7 @@
 }
 
 .landing-item-container{
-  padding: 100px 200px;
+  padding: 225px 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +49,7 @@
 .landing-item-half-box{
   width: 50%;
   padding: 10px;
+  z-index: 1;
 }
 
 .landing-image{
@@ -72,6 +73,18 @@
   background-color: #f5f7fb;
 }
 
+.header-placeholder{
+  background-image: url(https://clinika.modeltheme.com/wp-content/uploads/2020/09/Clinika-About_title.png);
+  height: 70px;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  background-size: contain;
+  position: absolute;
+  top: -50px;
+  width: 100%;
+  z-index: -1;
+}
+
 h1{
   font-size: 1.7em;
   font-weight: 700;
@@ -84,6 +97,10 @@ body{
 }
 
 @media all and (max-width: 767px){
+  /*.wave{
+    display: none;
+  }*/
+  
   .ant-form{
     margin: 20px;
     width: auto;
@@ -95,6 +112,12 @@ body{
 
   .landing-item-container{
     padding: 100px 30px;
+  }
+}
+
+@media all and (max-width: 1000px){
+  .wave{
+    display: none;
   }
 }
 

@@ -1,6 +1,7 @@
 import Brain from '../illustrations/Brain';
+import ActionButton from '../actionButton/ActionButton';
 
-function TabItem({title, details, image}){
+function TabItem({title, details, image, actionText}){
   return(
     <div style={{display: 'flex', flexFlow: 'row wrap', marginTop: 50}}>
       <div className="landing-item-half-box">
@@ -13,6 +14,7 @@ function TabItem({title, details, image}){
         <h3>
           {details}
         </h3>
+        <ActionButton text={actionText}/>
       </div>
     </div>
   )
