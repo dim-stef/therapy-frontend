@@ -7,7 +7,7 @@ function WhatsNew(){
   const {data} = useSelector((state)=>state.landingPageData);
   const whatsNewData = data.find(d=>d.slice_type=='whats_new');
   return(
-    <div className="landing-item-container">
+    <div className="landing-item-container news-section">
       <Wave style={{position: 'absolute', top: -195, zIndex:1, fill:'#fff'}}/>
 
       <div style={{display:'flex', flexFlow:'column', zIndex:1}}>

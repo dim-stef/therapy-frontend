@@ -7,7 +7,7 @@ function OurTherapists(){
   const membersData = data.find(d=>d.slice_type=='member');
 
   return(
-    <div className="landing-item-container" style={{flexFlow:'column', padding:200, zIndex:10}}>
+    <div className="landing-item-container member-section" style={{flexFlow:'column', zIndex:10}}>
       <div style={{position: 'relative'}}>
       <div className="header-placeholder" 
       style={{backgroundImage: `url(${membersData.primary.placeholder.url})`}}></div>

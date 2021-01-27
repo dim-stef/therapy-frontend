@@ -8,7 +8,7 @@ function Testimonials(){
   const {data} = useSelector((state)=>state.landingPageData);
   const reviews = data.find(d=>d.slice_type=='reviews')
   return(
-    <div className="landing-item-container" style={{backgroundColor: '#f5f7fb'}}>
+    <div className="landing-item-container testimonials-section" style={{backgroundColor: '#f5f7fb'}}>
       <Wave style={{position: 'absolute', top: -195, zIndex:1, fill:'#f5f7fb'}}/>
       <div className="landing-item-half-box" style={{textAlign:'start'}}>
         <div style={{position: 'relative'}}>
@@ -26,7 +26,7 @@ function Testimonials(){
         <Carousel autoplay>
           {reviews.items.map(item=>(
             <div className="testimonial-box">
-              <h1>{item.testimonial_title[0].text}</h1>
+              <h1 style={{fontSize:'1.3rem'}}>{item.testimonial_title[0].text}</h1>
               <p>{item.testimonial_details[0].text}</p>
               <div style={{display:'flex', flexFlow:'row', justifyContent:'center'}}>
                 <img src={item.icon.url} style={{objectFit:'cover', height:60, width:60, borderRadius:'50%'}}/>

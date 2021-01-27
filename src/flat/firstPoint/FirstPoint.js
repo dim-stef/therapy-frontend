@@ -8,7 +8,7 @@ function FirstPoint(){
 
   console.log(firstPointData);
   return(
-    <div className="landing-item-container">
+    <div className="landing-item-container about-section">
       <Wave style={{position: 'absolute', top: -195, zIndex:1, fill:'#fff'}}/>
       <div className="landing-item-half-box">
         <img src={firstPointData.primary.image.url} className="landing-image"/>

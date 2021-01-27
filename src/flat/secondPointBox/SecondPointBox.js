@@ -8,7 +8,7 @@ function SecondPointBox(){
   const secondPointData = data.find(d=>d.slice_type=='benefit_section');
 
   return(
-    <div className="landing-item-container" style={{backgroundColor:'#f5f7fb'}}>
+    <div className="landing-item-container benefit-section" style={{backgroundColor:'#f5f7fb'}}>
       <div className="landing-item-half-box" 
       style={{display:'flex',flexFlow:'column',alignItems:'flex-start', textAlign:'start'}}>
         <div style={{position: 'relative'}}>

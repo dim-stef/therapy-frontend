@@ -13,7 +13,7 @@ function LandingTabs(){
   const tabItems = data.find(d=>d.slice_type=='facility_item');
 
   return(
-    <div className="landing-item-container" style={{flexFlow:'column', zIndex:12}}>
+    <div className="landing-item-container facility-section" style={{flexFlow:'column', zIndex:12}}>
       <Wave style={{position: 'absolute', top: -200, zIndex:-1, fill:'#fff'}}/>
       <div style={{position:'relative'}}>
         <div style={{display: 'flex', justifyContent:'center', alignItems:'center',
