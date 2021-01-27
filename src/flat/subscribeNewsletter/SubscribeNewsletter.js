@@ -6,7 +6,7 @@ function NewsLetter(){
   const {data} = useSelector((state)=>state.landingPageData);
   const subscribeData = data.find(d=>d.slice_type=='subscribe');
   return(
-    <div className="landing-item-container" style={{backgroundColor: '#f5f7fb'}}>
+    <div className="landing-item-container" style={{backgroundColor: '#f5f7fb', padding:200}}>
       <div style={{backgroundImage: `url(${subscribeData.primary.image.url})`, position:'absolute',
       top:0,left:0,width:'100%',height:'100%'}}>
 

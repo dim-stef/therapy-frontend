@@ -7,7 +7,7 @@ function OurTherapists(){
   const membersData = data.find(d=>d.slice_type=='member');
 
   return(
-    <div className="landing-item-container" style={{flexFlow:'column'}}>
+    <div className="landing-item-container" style={{flexFlow:'column', padding:200, zIndex:10}}>
       <div style={{position: 'relative'}}>
       <div className="header-placeholder" 
       style={{backgroundImage: `url(${membersData.primary.placeholder.url})`}}></div>
@@ -15,7 +15,7 @@ function OurTherapists(){
         {membersData.primary.title[0].text}</h1>
       </div>
       <p>{membersData.primary.details[0].text}</p>
-      <div style={{display:'flex', flexFlow:'row wrap', 
+      <div style={{display:'flex', flexFlow:'row wrap',
       justifyContent:'center', marginTop:30}}>
         {membersData.items.map(therapist=>{
           return(
@@ -32,7 +32,7 @@ function OurTherapists(){
       <div style={{width: '100%', marginTop: 40}}>
         <ActionButton text={membersData.primary.action_text[0].text}/>
       </div>
-      <Wave style={{position: 'absolute', bottom: -195, transform:'rotate(180deg)', zIndex:1, fill:'#fff'}}/>
+      <Wave style={{position: 'absolute', bottom: -195, transform:'rotate(180deg)', zIndex:-1, fill:'#fff'}}/>
 
     </div>
   )

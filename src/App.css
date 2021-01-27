@@ -38,7 +38,8 @@
 }
 
 .landing-item-container{
-  padding: 225px 200px;
+  /*padding: 225px 200px;*/
+  padding: 125px 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,10 +47,18 @@
   position: relative;
 }
 
+.landing-item-container h1{
+  font-size: 2.3rem;
+}
+
+.landing-item-container p{
+  color: #777777;
+}
+
 .landing-item-half-box{
   width: 50%;
   padding: 10px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .landing-image{

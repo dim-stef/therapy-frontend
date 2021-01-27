@@ -21,6 +21,10 @@
   color: white !important;
 }
 
+.landing-item-container .ant-tabs-tab-active p {
+  color: white !important;
+}
+
 .landing-item-container .ant-tabs-nav-wrap{
   border-radius: 10px;
   overflow: hidden !important;

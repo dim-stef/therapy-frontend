@@ -13,8 +13,8 @@ function LandingTabs(){
   const tabItems = data.find(d=>d.slice_type=='facility_item');
 
   return(
-    <div className="landing-item-container" style={{flexFlow:'column'}}>
-      <Wave style={{position: 'absolute', top: -240, zIndex:1, fill:'#fff'}}/>
+    <div className="landing-item-container" style={{flexFlow:'column', zIndex:12}}>
+      <Wave style={{position: 'absolute', top: -200, zIndex:-1, fill:'#fff'}}/>
       <div style={{position:'relative'}}>
         <div style={{display: 'flex', justifyContent:'center', alignItems:'center',
         position:'absolute', top: -50, height:90, width: '100%',zIndex:-1}}>
@@ -36,7 +36,7 @@ function LandingTabs(){
           </TabPane>
         ))}
       </Tabs>
-      <Wave style={{position: 'absolute', bottom: -195, zIndex:1, transform: 'rotate(180deg)', fill:'#fff'}}/>
+      <Wave style={{position: 'absolute', bottom: -195, zIndex:-1, transform: 'rotate(180deg)', fill:'#fff'}}/>
     </div>
   )
 }

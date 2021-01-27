@@ -5,7 +5,7 @@ function Partners(){
   const {data} = useSelector((state)=>state.landingPageData);
   const partnerData = data.find(d=>d.slice_type=='partners');
   return(
-    <div className="landing-item-container">
+    <div className="landing-item-container" style={{paddingTop:0}}>
       <div style={{display:'flex', flexFlow:'column', zIndex:1}}>
         <div style={{position: 'relative'}}>
           <div style={{width:'100%', display:'flex', justifyContent:'center',
