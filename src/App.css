@@ -37,6 +37,10 @@
   flex-flow: row wrap;
 }
 
+.about-section{
+  padding: 20px 100px;
+}
+
 .member-section{
   padding: 200px !important;
   padding-bottom: 0px !important;
