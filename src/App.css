@@ -43,8 +43,7 @@
 }
 
 .landing-item-container{
-  /*padding: 225px 200px;*/
-  padding: 125px 200px;
+  padding: 125px 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,7 +150,23 @@ body{
   }
 
   .landing-item-container{
-    padding: 100px 30px;
+    padding: 50px 30px !important;
+  }
+
+  .blog-post{
+    max-width: 90% !important;
+  }
+
+  .secondPointBoxItem{
+    width:100%;
+  }
+
+  footer{
+    padding-top: 0 !important;
+  }
+
+  .hero-text h1{
+    font-size: 2.2rem !important;
   }
 }
 
