@@ -38,7 +38,7 @@
 }
 
 .about-section{
-  padding: 20px 100px;
+  padding: 20px 100px !important;
 }
 
 .member-section{
