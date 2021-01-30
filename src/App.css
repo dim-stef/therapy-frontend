@@ -43,7 +43,7 @@
 
 .member-section{
   padding: 200px !important;
-  padding-bottom: 0px !important;
+  padding-bottom: 25px !important;
 }
 
 .landing-item-container{
@@ -114,6 +114,22 @@ body{
 }
 
 @media all and (max-width: 1320px){
+  .services-placeholder{
+    top: -30px !important;
+  }
+
+  .news-placeholder{
+    top: -30px !important;
+  }
+
+  .subscribe-placeholder{
+    top: -30px !important;
+  }
+
+  .landing-item-container h1{
+    font-size: 1.7rem;
+  }
+
   .landing-item-container{
     padding: 125px 100px;
   }
@@ -127,7 +143,7 @@ body{
   }
 
   .facility-section{
-    padding: 0px 100px !important;
+    padding: 30px 100px !important;
   }
 
   .testimonials-section{
@@ -166,7 +182,7 @@ body{
   }
 
   footer{
-    padding-top: 0 !important;
+    padding-top: 200px !important;
   }
 
   .hero-text h1{

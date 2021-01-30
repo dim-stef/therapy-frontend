@@ -13,7 +13,7 @@ function NewsLetter(){
       </div>
       <div style={{display:'flex', flexFlow:'column', zIndex:1}}>
         <div style={{position: 'relative'}}>
-          <div style={{width:'100%', display:'flex', justifyContent:'center',
+          <div className="subscribe-placeholder" style={{width:'100%', display:'flex', justifyContent:'center',
           alignItems:'center', position: 'absolute', top: -70, zIndex:-1}}>
             <img style={{width:'50%'}} src={subscribeData.primary.placeholder.url}/>
           </div>
