@@ -46,6 +46,10 @@
   padding-bottom: 25px !important;
 }
 
+.benefit-section{
+  padding: 125px 100px !important;
+}
+
 .landing-item-container{
   padding: 25px 100px;
   display: flex;
