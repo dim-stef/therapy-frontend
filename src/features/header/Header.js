@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { Drawer } from 'antd';
 import { UserOutlined, HomeOutlined, CalendarOutlined, MenuOutlined } from '@ant-design/icons';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useLocation} from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import './header.css';
 
@@ -11,6 +11,7 @@ function Header(){
   const [drawerVisible, setDrawerVisible] = useState(false);
   const {token} = useSelector(state=>state.authentication);
   const history = useHistory();
+  const location = useLocation()
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' })
 
   // if we are on landing page the background is "dark" and the header icons should be white
