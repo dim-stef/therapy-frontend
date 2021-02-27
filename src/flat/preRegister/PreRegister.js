@@ -5,7 +5,7 @@ function PreRegister(){
   const history = useHistory();
 
   function onClick(){
-    history.push('/register');
+    history.push('/register_therapist');
   }
 
   return(
@@ -23,7 +23,7 @@ function PreRegister(){
             size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}></Avatar>
           </div>
         </div>
-        <Button type="primary" style={{margin:10}} onClick={onClick}>Δημιούργησε λογαριασμό</Button>
+        <Button type="primary" style={{margin:10}} onClick={onClick}>Δημιούργησε επαγγελματικό λογαριασμό</Button>
       </div>
     </div>
   )

@@ -15,73 +15,17 @@ function getRandomColor() {
   return color;
 }
 
-
-function TherapistCard2({therapist}){
-  const stripe = useStripe();
-  const history = useHistory();
-  const [color, ] = useState(getRandomColor())
-  async function handleClick(event){
-    console.log(therapist);
-
-    const response = await fetch(process.env.REACT_APP_API_URL +
-      `/v1/create_checkout_session/${therapist.profile.stripe_id}/`, {method: 'POST'});
-
-    console.log(response);
-    const session = await response.json();
-    const result = await stripe.redirectToCheckout({sessionId:session.sessionId});
-    if(result.error){
-      console.error(result.error.message)
-    }
-  }
-
-  console.log(process.env.REACT_APP_DOMAIN + therapist.avatar)
-  console.log(therapist);
-  return(
-    <Card
-      style={{ width: 300, marginTop: 16 }}
-      actions={[
-        <div>
-          <DatetimePicker therapist={therapist} onOk={handleClick}/>
-        </div>,
-      ]}
-    >
-      <Skeleton loading={false} avatar active>
-        <Card.Meta
-          avatar={
-            therapist.profile.avatar?
-            <Avatar src={process.env.REACT_APP_DOMAIN + therapist.profile.avatar}></Avatar>:
-            <Avatar size="large" style={{backgroundColor:color}}>{therapist.profile.name.substring(0,2).toUpperCase()}</Avatar>
-          }
-          title={therapist.profile.name}
-          description={therapist.bio.substring(0,70)}
-        >
-        </Card.Meta>
-      </Skeleton>
-    </Card>
-  )
-}
-
-
 function TherapistCard({therapist}){
-  const stripe = useStripe();
   const history = useHistory();
   const [color, ] = useState(getRandomColor())
-  async function handleClick(event){
+
+  function handleTherapistClick(){
     console.log(therapist);
-
-    const response = await fetch(process.env.REACT_APP_API_URL +
-      `/v1/create_checkout_session/${therapist.profile.stripe_id}/`, {method: 'POST'});
-
-    console.log(response);
-    const session = await response.json();
-    const result = await stripe.redirectToCheckout({sessionId:session.sessionId});
-    if(result.error){
-      console.error(result.error.message)
-    }
+    history.push(`/therapists/${therapist.id}`)
   }
 
   return(
-    <div className="card" style={{width: 300, marginTop: 16}}>
+    <div className="card" style={{width: 300, marginTop: 16, cursor:'pointer'}} onClick={handleTherapistClick}>
       <div style={{display:'flex', flexFlow:'row', alignItems:'center'}}>
         {therapist.profile.avatar?
           <Avatar size="large" src={process.env.REACT_APP_DOMAIN + therapist.profile.avatar}></Avatar>:

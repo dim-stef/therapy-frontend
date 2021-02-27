@@ -1,0 +1,38 @@
+.ant-tag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #03a9f46b;
+  border-radius: 50px;
+  color: #2196f3 !important;
+  font-weight: bold;
+  padding-right: 15px;
+  padding-left: 15px;
+  border: 0;
+}
+
+.therapist .ant-space{
+  width: 100%;
+}
+
+.therapist .ant-picker{
+  width: 100%;
+  background-color: #1890ff;
+  border:0;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.therapist .ant-picker:hover, .ant-picker:focus {
+  color: #fff;
+  background: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.therapist .ant-picker-input input::placeholder {
+  color: white !important;
+  text-align: center;
+}
+
+.therapist svg{
+  fill: white;
+}

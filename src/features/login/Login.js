@@ -70,12 +70,10 @@ const Login = () => {
         </Form.Item>
         {error?<div className="ant-form-item-explain ant-form-item-explain-error">
         Your email or password did not match</div>:null}
-        {/*<Form.Item>
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
+        <Form.Item>
+          <Link to="/forgot_password">Ξέχασα τον κωδικό</Link>
         </Form.Item>
-        */}
+        
         <Form.Item style={{display:'flex', flexFlow:'column'}}>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Συνδέσου

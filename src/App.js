@@ -26,6 +26,8 @@ import BlogListScreen from './screens/BlogListScreen';
 import BlogPostScreen from './screens/BlogPostScreen';
 import PreLoginScreen from './screens/PreLoginScreen';
 import PreRegisterScreen from './screens/PreRegisterScreen';
+import PasswordForgotScreen from './screens/PasswordForgotScreen';
+import TherapistPageScreen from './screens/TherapistPageScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
 import {getLandingPageData} from './features/langingPageData/landingPageDataSlice'
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,8 +60,11 @@ function App() {
             <Route exact path="/">
               <LandingPageScreen />
             </Route>
-            <Route path="/therapists">
+            <Route exact path="/therapists">
               <HomeScreen/>
+            </Route>
+            <Route exact path="/therapists/:id">
+              <TherapistPageScreen/>
             </Route>
             <Route path="/me/:initial?">
               <ProfileScreen />
@@ -105,6 +110,9 @@ function App() {
             </Route>
             <Route path="/pre_login">
               <PreLoginScreen />
+            </Route>
+            <Route path="/forgot_password">
+              <PasswordForgotScreen />
             </Route>
           </Switch>
         </Layout>

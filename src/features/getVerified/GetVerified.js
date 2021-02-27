@@ -120,7 +120,7 @@ function GetVerified(){
             loading={uploading}
             style={{ marginTop: 16 }}
           >
-            {uploading ? 'Uploading' : 'Start Upload'}
+            {uploading ? 'Uploading' : 'Συνέχεια'}
           </Button>
         </Form.Item>
       </Form>

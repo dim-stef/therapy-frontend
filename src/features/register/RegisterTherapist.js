@@ -13,6 +13,7 @@ const RegisterTherapist = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const {token} = useSelector(state=>state.authentication);
+  const [loading, setLoading] = useState(false);
 
   if(token){
     history.push(`/verification/${token}`);
@@ -21,6 +22,7 @@ const RegisterTherapist = () => {
   const [result, setResult] = useState(null);
 
   const onFinish = (values) => {
+    setLoading(true);
     dispatch(
       register({
         name: values.name,
@@ -37,6 +39,7 @@ const RegisterTherapist = () => {
     )
       .then(unwrapResult)
       .then((res) => {
+        setLoading(false);
         setResult(res.data);
         if (res.data.non_field_errors) {
           //setErrors(result.non_field_errors);
@@ -163,7 +166,7 @@ const RegisterTherapist = () => {
           }):null}
         </div>
         <Form.Item style={{display:'flex', flexFlow:'column'}}>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button loading={loading} type="primary" htmlType="submit" className="login-form-button">
             Εγγραφή
           </Button>
           <div style={{marginTop:10}}>

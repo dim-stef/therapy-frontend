@@ -114,7 +114,7 @@ function Header(){
           <IconDrawerWrapper onClick={handleProfileClick} darkBackground={darkBackground}>
             <p style={{margin: 0, fontWeight:'bold'}}>{token?'Το προφίλ μου':'Συνδέσου'}</p>
           </IconDrawerWrapper>
-          {token?
+          {!token?
             <IconDrawerWrapper onClick={handleForTherapistsClick} darkBackground={darkBackground}>
             <p style={{margin: 0, fontWeight:'bold'}}>Για επαγγελματίες</p>
           </IconDrawerWrapper>:null}
@@ -141,7 +141,7 @@ function Header(){
           {/*<UserOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
           <p style={{margin: 0, fontWeight:'bold'}}>{token?'Το προφίλ μου':'Συνδέσου'}</p>
         </IconWrapper>
-        {token?
+        {!token?
           <IconWrapper onClick={handleForTherapistsClick} darkBackground={darkBackground}>
             {/*<CalendarOutlined style={{fontSize: 24, color:darkBackground?'white':'black'}}/>*/}
             <p style={{margin: 0, fontWeight:'bold'}}>Για επαγγελματίες</p>

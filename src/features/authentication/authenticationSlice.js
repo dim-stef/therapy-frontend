@@ -51,6 +51,8 @@ export const register = createAsyncThunk(
         name: credentials.name,
         email: credentials.email,
         bio: credentials.bio,
+        office_number: credentials.office_number,
+        address: credentials.address,
         is_therapist: credentials.is_therapist,
         password1: credentials.password1,
         password2: credentials.password2,
