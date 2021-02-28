@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import { Skeleton, Tag, Card, Avatar, Typography } from 'antd';
+import { Skeleton, Tag, Rate, Avatar, Typography } from 'antd';
 import {CardElement, useStripe, Elements , useElements} from '@stripe/react-stripe-js';
 import DatetimePicker from '../datetimePicker/DatetimePicker';
 import axios from 'axios';
@@ -49,8 +49,11 @@ function TherapistCard({therapist}){
           {therapist.bio}
         </Typography.Paragraph>
       </div>
-      <div style={{marginTop:20}}>
+      {/* <div style={{marginTop:20}}>
         <DatetimePicker therapist={therapist} />
+      </div> */}
+      <div style={{marginTop:20}}>
+        <Rate defaultValue={Math.ceil(therapist.reviews.average_rating)} disabled/>
       </div>
     </div>
   )

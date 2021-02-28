@@ -2,7 +2,8 @@ import {useState, useEffect} from 'react';
 import {
   useParams
 } from "react-router-dom";
-import { Skeleton, Tag, Divider, Avatar, Typography, Button } from 'antd';
+import {useSelector} from 'react-redux';
+import { Skeleton, Tag, Divider, Avatar, Typography, Rate } from 'antd';
 import {CardElement, useStripe, Elements , useElements} from '@stripe/react-stripe-js';
 import axios from 'axios';
 import DatetimePicker from '../datetimePicker/DatetimePicker';
@@ -22,6 +23,7 @@ function TherapistPage({props}){
   let { id } = useParams();
   const [therapist, setTherapist] = useState(null);
   const [color, ] = useState(getRandomColor());
+  const {user} = useSelector(state=>state.authentication);
 
   async function getTherapist(){
     try{
@@ -29,6 +31,32 @@ function TherapistPage({props}){
       setTherapist(response.data);
     }catch(e){
       console.error(e);
+    }
+  }
+
+  async function handleRatingChange(number){
+    try{
+      
+      if(number==0){
+        let response = await axios.delete(`${process.env.REACT_APP_API_URL}/v1/reviews/${therapist.review.id}/`);
+      }else{
+        let body = {
+          therapist: therapist.id,
+          stars: number,
+        }
+        
+        // we check here if the user has already reviewed the therapist
+        if(therapist.review){
+          let response = await axios.patch(`${process.env.REACT_APP_API_URL}/v1/reviews/${therapist.review.id}/`, body)
+        }else{
+          let response = await axios.post(`${process.env.REACT_APP_API_URL}/v1/reviews/`, body);
+        }
+      }
+
+      // get therapist again with the review changes
+      getTherapist()
+    }catch(e){
+
     }
   }
 
@@ -81,6 +109,7 @@ function TherapistPage({props}){
           </div>
           <Divider />
           <Typography.Paragraph style={{textAlign:'left', marginTop:20}}>{therapist.bio}</Typography.Paragraph>
+          {user?<Rate allowClear onChange={handleRatingChange} defaultValue={therapist.review?therapist.review.stars:0}/>:null}
         </div>
       </div>
     )

@@ -27,6 +27,7 @@ import BlogPostScreen from './screens/BlogPostScreen';
 import PreLoginScreen from './screens/PreLoginScreen';
 import PreRegisterScreen from './screens/PreRegisterScreen';
 import PasswordForgotScreen from './screens/PasswordForgotScreen';
+import ResetPasswordScreen from './screens/ResetPasswordScreen';
 import TherapistPageScreen from './screens/TherapistPageScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
 import {getLandingPageData} from './features/langingPageData/landingPageDataSlice'
@@ -113,6 +114,9 @@ function App() {
             </Route>
             <Route path="/forgot_password">
               <PasswordForgotScreen />
+            </Route>
+            <Route path="/password/reset/:uid/:token">
+              <ResetPasswordScreen />
             </Route>
           </Switch>
         </Layout>

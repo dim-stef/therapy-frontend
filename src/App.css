@@ -94,6 +94,10 @@
   background-color: #f5f7fb;
 }
 
+.wave{
+  width: 100%;
+}
+
 .header-placeholder{
   background-image: url(https://clinika.modeltheme.com/wp-content/uploads/2020/09/Clinika-About_title.png);
   height: 70px;
