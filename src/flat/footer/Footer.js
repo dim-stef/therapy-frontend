@@ -4,8 +4,7 @@ import {FieldTimeOutlined, PhoneOutlined,
 import {useSelector} from 'react-redux';
 import './footer.css';
 
-function Footer(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function Footer({data}){
   const footerData = data.find(d=>d.slice_type=='footer');
 
   function handleFbClick(){

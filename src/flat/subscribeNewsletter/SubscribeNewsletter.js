@@ -2,8 +2,7 @@ import {useSelector} from 'react-redux';
 import ActionButton from '../actionButton/ActionButton';
 import './subscribeNewsletter.css'
 
-function NewsLetter(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function NewsLetter({data}){
   const subscribeData = data.find(d=>d.slice_type=='subscribe');
   return(
     <div className="landing-item-container" style={{backgroundColor: '#f5f7fb', padding:200}}>

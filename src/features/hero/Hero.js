@@ -3,8 +3,7 @@ import VideoCall from '../../flat/illustrations/VideoCall';
 import ActionButton from '../../flat/actionButton/ActionButton';
 import './hero.css'
 
-function Hero(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function Hero({data}){
   const heroData = data.find(d=>d.slice_type=='hero_section');
 
   // too bored to calculate image height, just override it a bit

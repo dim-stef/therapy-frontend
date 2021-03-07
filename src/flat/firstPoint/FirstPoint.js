@@ -2,8 +2,7 @@ import {useSelector} from 'react-redux';
 import Wave from '../illustrations/Wave';
 import ActionButton from '../actionButton/ActionButton';
 
-function FirstPoint(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function FirstPoint({data}){
   const firstPointData = data.find(d=>d.slice_type=='aboutsection');
 
   console.log(firstPointData);

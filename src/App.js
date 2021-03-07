@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Layout from './features/layout/Layout';
 import {useSelector, useDispatch} from 'react-redux';
 import LandingPageScreen from './screens/LandingPageScreen';
+import LandingPageDoctorsScreen from './screens/LandingPageDoctorsScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import RegisterTherapistScreen from './screens/RegisterTherapistScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -30,7 +31,7 @@ import PasswordForgotScreen from './screens/PasswordForgotScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 import TherapistPageScreen from './screens/TherapistPageScreen';
 import {getUserData} from './features/authentication/authenticationSlice';
-import {getLandingPageData} from './features/langingPageData/landingPageDataSlice'
+import {getLandingPageData, getLandingPageDataDoctors} from './features/langingPageData/landingPageDataSlice'
 import 'react-toastify/dist/ReactToastify.css';
 import logo from './logo.svg';
 import './App.css';
@@ -38,16 +39,16 @@ import './App.css';
 function App() {
   const dispatch = useDispatch();
   const {user, token, checkingForToken} = useSelector(state=>state.authentication);
-  const {loading} = useSelector(state=>state.landingPageData);
-  console.log(loading);
+  const {loading, loadingDoctors} = useSelector(state=>state.landingPageData);
 
   useEffect(()=>{
     dispatch(getUserData());
     dispatch(getLandingPageData());
+    dispatch(getLandingPageDataDoctors());
   },[token, dispatch])
 
   console.log(user,token)
-  if(checkingForToken || loading){
+  if(checkingForToken || loading || loadingDoctors){
     return(
       <LoadingScreen/>
     )
@@ -60,6 +61,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <LandingPageScreen />
+            </Route>
+            <Route exact path="/doctors">
+              <LandingPageDoctorsScreen />
             </Route>
             <Route exact path="/therapists">
               <HomeScreen/>

@@ -3,8 +3,7 @@ import {useSelector} from 'react-redux';
 import ServiceItem from './ServiceItem';
 import ActionButton from '../actionButton/ActionButton';
 
-function Services(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function Services({data}){
   const serviceItems = data.find(d=>d.slice_type=='provided_services');
   return(
     <div className="landing-item-container" style={{backgroundColor: '#f5f7fb', padding: '200px 100px'}}>

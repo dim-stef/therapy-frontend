@@ -35,6 +35,9 @@ function Register(){
         if (res.data.non_field_errors) {
           //setErrors(result.non_field_errors);
         }
+        if(result.status == 200 || result.status == 201){
+          history.push('/me');
+        }
       });
   };
 

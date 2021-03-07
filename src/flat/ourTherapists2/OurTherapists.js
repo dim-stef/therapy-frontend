@@ -2,8 +2,7 @@ import {useSelector} from 'react-redux';
 import ActionButton from '../actionButton/ActionButton';
 import Wave from '../illustrations/Wave';
 
-function OurTherapists(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function OurTherapists({data}){
   const membersData = data.find(d=>d.slice_type=='member');
 
   return(

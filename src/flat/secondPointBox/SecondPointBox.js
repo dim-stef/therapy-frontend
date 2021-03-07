@@ -3,8 +3,7 @@ import {useSelector} from 'react-redux';
 import BoxItem from './BoxItem';
 import './secondPointBox.css';
 
-function SecondPointBox(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function SecondPointBox({data}){
   const secondPointData = data.find(d=>d.slice_type=='benefit_section');
 
   return(

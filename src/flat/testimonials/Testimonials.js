@@ -4,8 +4,7 @@ import Wave from '../illustrations/Wave';
 import ActionButton from '../actionButton/ActionButton';
 import './testimonials.css';
 
-function Testimonials(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function Testimonials({data}){
   const reviews = data.find(d=>d.slice_type=='reviews')
   return(
     <div className="landing-item-container testimonials-section" style={{backgroundColor: '#f5f7fb'}}>

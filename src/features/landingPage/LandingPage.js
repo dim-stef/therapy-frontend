@@ -20,23 +20,23 @@ import Faq from '../../flat/faq/Faq';
 import Footer from '../../flat/footer/Footer';
 import {getLandingPageData} from '../langingPageData/landingPageDataSlice'
 
-function LandingPage(){
+function LandingPage({type='home'}){
   const dispatch = useDispatch();
-  const {data} = useSelector((state)=>state.landingPageData);
-  console.log(data);
+  const {data, dataDoctors} = useSelector((state)=>state.landingPageData);
+  console.log(data, dataDoctors, "doctors");
   return(
     <div style={{width:'100%'}}>
-      <Hero/>
-      <FirstPoint/>
-      <SecondPointBox/>
-      <LandingTabs/>
-      <Services/>
-      <Testimonials/>
-      <OurTherapists/>
-      <SubscribeNewsletter/>
-      <WhatsNew/>
-      <Partners/>
-      <Footer/>
+      <Hero data={type==='home'?data:dataDoctors}/>
+      <FirstPoint data={type==='home'?data:dataDoctors}/>
+      <SecondPointBox data={type==='home'?data:dataDoctors}/>
+      <LandingTabs data={type==='home'?data:dataDoctors}/>
+      <Services data={type==='home'?data:dataDoctors}/>
+      <Testimonials data={type==='home'?data:dataDoctors}/>
+      <OurTherapists data={type==='home'?data:dataDoctors}/>
+      <SubscribeNewsletter data={type==='home'?data:dataDoctors}/>
+      <WhatsNew data={type==='home'?data:dataDoctors}/>
+      <Partners data={type==='home'?data:dataDoctors}/>
+      <Footer data={type==='home'?data:dataDoctors}/>
     </div>
   )
 }

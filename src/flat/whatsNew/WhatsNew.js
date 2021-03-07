@@ -3,8 +3,7 @@ import BlogList from '../../features/blog/BlogList';
 import ActionButton from '../actionButton/ActionButton';
 import Wave from '../illustrations/Wave';
 
-function WhatsNew(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function WhatsNew({data}){
   const whatsNewData = data.find(d=>d.slice_type=='whats_new');
   return(
     <div className="landing-item-container news-section">

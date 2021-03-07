@@ -85,8 +85,6 @@ export const getUserData = createAsyncThunk(
 
     try {
       userToken = localStorage.getItem('token');
-      console.log(userToken);
-      console.log(userToken, localStorage);
       userData.token = userToken;
       //axios.defaults.withCredentials = true;
       axios.interceptors.request.use(function (config) {
@@ -119,6 +117,14 @@ export const authenticationSlice = createSlice({
     user: null,
     loading: false,
     checkingForToken: true,
+  },
+  reducers:{
+    logout(state, action){
+      state.user = null;
+      state.token = null;
+      localStorage.removeItem('token')
+      localStorage.removeItem('refresh')
+    }
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
@@ -164,3 +170,5 @@ export const authenticationSlice = createSlice({
     },
   }
 })
+
+export const { logout } = authenticationSlice.actions;

@@ -1,8 +1,7 @@
 import {useSelector} from 'react-redux';
 import Wave from '../illustrations/Wave';
 
-function Partners(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function Partners({data}){
   const partnerData = data.find(d=>d.slice_type=='partners');
   return(
     <div className="landing-item-container" style={{paddingTop:0, paddingBottom: 50}}>

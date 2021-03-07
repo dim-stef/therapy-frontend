@@ -8,8 +8,7 @@ import './landingTabs.css';
 
 const { TabPane } = Tabs;
 
-function LandingTabs(){
-  const {data} = useSelector((state)=>state.landingPageData);
+function LandingTabs({data}){
   const tabItems = data.find(d=>d.slice_type=='facility_item');
 
   return(

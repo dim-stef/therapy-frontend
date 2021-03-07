@@ -1,22 +1,29 @@
 import {useEffect, useState} from 'react';
-import {useHistory, useParams, useLocation} from 'react-router-dom';
+import {useHistory, useParams, useLocation, Redirect} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import { Button, Typography, Divider, Tabs, Alert } from 'antd';
 import {useSelector} from 'react-redux';
 import UpdateProfileSection from './UpdateProfileSection';
 import AvailabilitySection from './AvailabilitySection';
+import {logout} from '../authentication/authenticationSlice';
 import axios from 'axios';
 import './profile.css';
 
 
 function Profile(){
-  const params = useParams();
-  const location = useLocation();
-  console.log(params, location);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const {user} = useSelector(state=>state.authentication);
 
-  function callback(key) {
-    //console.log(key);
-  }
+  
+  if(!user){
+    return <Redirect to="/"/>
+  };
+
+  console.log(user);
+  function handleLogout(){
+    dispatch(logout());
+  };
 
   return(
     <div className="App-container">
@@ -37,6 +44,7 @@ function Profile(){
         <div style={{display:'flex', flexFlow:'column', alignItems:'flex-start',marginTop:20}}>
           <h2 style={{fontWeight:'bold'}}>Your profile</h2>
           <UpdateProfileSection/>
+          <Button onClick={handleLogout}>Logout</Button>
         </div>   
       </div>
     </div>
